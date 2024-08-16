@@ -2,116 +2,30 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-    />
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <title>1,000,000 Particles</title>
   </head>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      position: relative;
-      font-family: "Times New Roman", Times, serif;
-      width: 100vw;
-      height: 100vh;
-      margin: 0;
-      padding: 0;
-      background-color: #021119;
-      color: #d7d7d7;
-      overflow: hidden;
-    }
-    canvas {
-      width: 100%;
-      height: 100%;
-    }
-    .guide {
-      position: absolute;
-      bottom: 10%;
-      left: 0;
-      display: flex;
-      width: 100%;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-size: 14px;
-      z-index: 1;
-    }
-    .title {
-      position: absolute;
-      width: 100%;
-      top: 5%;
-      left: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0 10px;
-    }
-    .title p {
-      margin: 0;
-      opacity: 0.5;
-    }
-    .source {
-      margin-top: 16px;
-      font-size: 12px;
-      letter-spacing: 0.03em;
-    }
-    .source * {
-      margin: 0 6px 0;
-    }
-    .source,
-    .source a {
-      display: flex;
-      align-items: center;
-    }
-    .source a {
-      opacity: 0.6;
-      color: #d7d7d7;
-      border-bottom: 1px dotted #d7d7d7;
-      text-decoration: none;
-    }
-    .source a:hover {
-      opacity: 1;
-    }
-    .dot {
-      opacity: 0.6;
-    }
-    .mouse {
-      display: flex;
-    }
-    .gestures {
-      display: none;
-    }
-    .mouse,
-    .gestures {
-      align-items: center;
-    }
-    .mouse div,
-    .gestures div {
-      display: flex;
-      margin: 0 10px;
-      align-items: center;
-    }
-    .mouse span,
-    .gestures span {
-      margin-left: 8px;
-      opacity: 0.4;
-    }
-    .mouse svg,
-    .gestures svg {
-      opacity: 0.3;
-      width: 20px;
-      height: auto;
-    }
-    .gestures svg {
-      opacity: 0.4;
-      margin-bottom: 4px;
-    }
+    * { box-sizing: border-box; }
+    body { position: relative; font-family: 'Times New Roman', Times, serif; width: 100vw; height: 100vh; margin: 0; padding: 0; background-color: #021119; color: #d7d7d7; overflow: hidden; }
+    canvas { width: 100%; height: 100%; }
+    .guide { position: absolute; bottom: 10%; left: 0; display: flex; width: 100%; flex-direction: column; justify-content: center; align-items: center; font-size: 14px; z-index: 1; }
+    .title { position: absolute; width: 100%; top: 5%; left: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 10px; }
+    .title p { margin: 0; opacity: 0.5; }
+    .source { margin-top: 16px; font-size: 12px; letter-spacing: 0.03em; }
+    .source * { margin: 0 6px 0; }
+    .source, .source a { display: flex; align-items: center; }
+    .source a { opacity: 0.6; color: #d7d7d7; border-bottom: 1px dotted #d7d7d7; text-decoration: none; }
+    .source a:hover { opacity: 1; }
+    .dot { opacity: 0.6; }
+    .mouse { display: flex; }
+    .gestures { display: none; }
+    .mouse, .gestures { align-items: center; }
+    .mouse div, .gestures div { display: flex; margin: 0 10px; align-items: center; }
+    .mouse span, .gestures span { margin-left: 8px; opacity: 0.4; }
+    .mouse svg, .gestures svg { opacity: 0.3; width: 20px; height: auto; }
+    .gestures svg { opacity: 0.4; margin-bottom: 4px; }
     .text {
       position: fixed;
       inset: 0;
@@ -120,21 +34,14 @@
       justify-content: center;
       mix-blend-mode: difference;
       font-size: 100px;
-      user-select: none;
     }
     @media only screen and (hover: none) {
-      .guide {
-        bottom: 15%;
-      }
-      .mouse {
-        display: none;
-      }
-      .gestures {
-        display: flex;
-      }
+      .guide { bottom: 15% }
+      .mouse { display: none; }
+      .gestures { display: flex; }
     }
   </style>
-
+  
   <body>
     <canvas></canvas>
     <div class="text">SEROTONIN</div>
@@ -157,7 +64,6 @@
   </script>
 
   <script id="fboPositionFragmentShader" type="x-shader/x-fragment">
-    precision highp float;
     uniform sampler2D uOriginalPositionsTexture;
     uniform sampler2D uPositionsTexture;
     uniform sampler2D uVelocitiesTexture;
@@ -172,16 +78,22 @@
     ${noise}
 
     void main() {
-      vec2 uv = gl_FragCoord.xy / uTextureResolution;
+      vec2 uv = gl_FragCoord.xy / uTextureResolution.xy;  // Normalized pixel coordinates (0.0 to 1.0)
       vec3 originalPosition = texture2D(uOriginalPositionsTexture, uv).rgb;
-      vec3 position = texture2D(uPositionsTexture, uv).rgb;
       vec4 velocity = texture2D(uVelocitiesTexture, uv).rgba;
-      vec3 diffPosition = originalPosition - position;
+      vec3 position = texture2D(uPositionsTexture, uv).rgb;
+      float time = uTime / 20.;
 
-      position += curlNoise(originalPosition + uTime * uNoiseFrequency) * uNoiseAmplitude * sin(uTime / 2.);
-      position += velocity.xyz * uDeltaTime;
+      vec3 swirl = vec3(
+        sin(originalPosition.y * 3.0 + time) * 0.3,
+        cos(originalPosition.x * 3.0 + time) * 0.3,
+        0.
+      );
 
-      gl_FragColor = vec4(position, length(diffPosition));
+      float n = snoise((originalPosition + time) * 0.8);
+      n += snoise((originalPosition + time) * 1.4);
+      originalPosition += velocity.xyz * time;
+      gl_FragColor = vec4((originalPosition + swirl) + n, length(originalPosition));
     }
   </script>
 
@@ -192,13 +104,12 @@
   </script>
 
   <script id="fboVelocityFragmentShader" type="x-shader/x-fragment">
-    precision highp float;
     uniform sampler2D uOriginalPositionsTexture;
     uniform sampler2D uPositionsTexture;
     uniform sampler2D uVelocitiesTexture;
+    uniform float uTime;
     uniform vec2 uTextureResolution;
     uniform vec3 uPointer;
-    uniform float uGravity;
     uniform vec3 uPointerStart;
 
     void main() {
@@ -206,26 +117,23 @@
       vec3 originalPosition = texture2D(uOriginalPositionsTexture, uv).rgb;
       vec3 position = texture2D(uPositionsTexture, uv).rgb;
       vec4 velocity = texture2D(uVelocitiesTexture, uv).rgba;
-
+  
       // if pointer hits a particle
-      vec3 diffToPointer = position - uPointer;
-      float pointerDiffLength = distance(uPointer.xy, uPointerStart.xy);
+      vec3 diffToPointer = position - uPointer;    
+      float pointerDiffLength = distance(uPointer, uPointerStart);
       float distanceToPointer = length(position.xy - uPointer.xy);
       float isHit = 1. - smoothstep(0., 1., distanceToPointer);
-
-      if (uGravity < 0.) {
-        isHit = smoothstep(0., 1., distanceToPointer) - 1.;
-      }
-
+      
       // find target position
-      vec3 target = originalPosition + normalize(diffToPointer) * clamp(pow(2.5, pointerDiffLength), 1.0, 100.0) * isHit;
+      vec3 target = originalPosition + normalize(diffToPointer) * clamp(pow(2.5, pointerDiffLength * 4.0), 1.0, 100.0) * isHit;
 
       // move that position
-      velocity.xyz = (target - position);
+      velocity.xyz = (target - position); 
 
       gl_FragColor = vec4(velocity.xyz, 1.);
     }
   </script>
+
 
   <script type="module">
     import * as THREE from "three";
@@ -236,42 +144,33 @@
 
     // text scene
     const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 100);
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 100 );
     camera.position.z = 76;
 
     // fbo scene
     const fboScene = new THREE.Scene();
-    const fboCamera = new THREE.OrthographicCamera(
-      -1,
-      1,
-      1,
-      -1,
-      1 / Math.pow(2, 53),
-      1
-    );
-
+    const fboCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 1 / Math.pow(2, 53), 1);
+    
     // fbo config
-    const fboWidth = 1000;
-    const fboHeight = 1000;
+    const fboWidth = 500;
+    const fboHeight = 500;
     const COUNT = fboWidth * fboHeight;
-
+    
     // uniforms
     const textUniforms = {
       uWatermarbleTexture: { value: null },
       uPositionsTexture: { value: null },
       uVelocitiesTexture: { value: null },
-      uGravity: { value: 1 },
     };
     const fboUniforms = {
       uOriginalPositionsTexture: { value: null },
       uPositionsTexture: { value: null },
       uVelocitiesTexture: { value: null },
       uTextureResolution: { value: new THREE.Vector2(fboWidth, fboHeight) },
-      uGravity: { value: 1 },
       uPointer: { value: new THREE.Vector3() },
       uPointerStart: { value: new THREE.Vector3() },
       uNoiseFrequency: { value: 0.03 },
-      uNoiseAmplitude: { value: 0.001 },
+      uNoiseAmplitude: { value: 0.0008 },
       uTime: { value: 0 },
       uDeltaTime: { value: 0 },
       uComeBack: { value: 0 },
@@ -279,46 +178,30 @@
 
     // fbo shaders
     // text shaders are written in literal string further down below
-    const fboPositionVertexShader = document.getElementById(
-      "fboPositionVertexShader"
-    ).textContent;
-    const fboPositionFragmentShader = document
-      .getElementById("fboPositionFragmentShader")
-      .textContent.replace("${noise}", noise);
-    const fboVelocityVertexShader = document.getElementById(
-      "fboVelocityVertexShader"
-    ).textContent;
-    const fboVelocityFragmentShader = document.getElementById(
-      "fboVelocityFragmentShader"
-    ).textContent;
+    const fboPositionVertexShader = document.getElementById("fboPositionVertexShader").textContent;
+    const fboPositionFragmentShader = document.getElementById("fboPositionFragmentShader").textContent.replace("${noise}", noise);
+    const fboVelocityVertexShader = document.getElementById("fboVelocityVertexShader").textContent;
+    const fboVelocityFragmentShader = document.getElementById("fboVelocityFragmentShader").textContent;
 
     // water marble texture
-    new THREE.TextureLoader().load(
-      "./assets/watermarble.jpg",
-      function (watermarbleTexture) {
-        watermarbleTexture.wrapS = THREE.RepeatWrapping;
-        watermarbleTexture.wrapT = THREE.RepeatWrapping;
-        textUniforms.uWatermarbleTexture.value = watermarbleTexture;
-      }
-    );
+    new THREE.TextureLoader().load("./assets/watermarble.jpg", function (watermarbleTexture) {
+      watermarbleTexture.wrapS = THREE.RepeatWrapping;
+      watermarbleTexture.wrapT = THREE.RepeatWrapping;
+      textUniforms.uWatermarbleTexture.value = watermarbleTexture;
+    });
 
     // text
     const textGeometry = new THREE.BufferGeometry();
-    const textMaterial = new THREE.PointsMaterial({
-      size: 1,
-      opacity: 0.6,
-      transparent: true,
-    });
+    const textMaterial = new THREE.PointsMaterial({ size: 1, opacity: 0.6, transparent: true });
     const text = new THREE.Points(textGeometry, textMaterial);
     text.position.set(0, 0, 0);
     text.material.onBeforeCompile = function (shader) {
       shader.uniforms = {
         ...shader.uniforms,
         ...textUniforms,
-      };
+      }
       shader.vertexShader = `
         uniform sampler2D uPositionsTexture;
-        uniform sampler2D uVelocitiesTexture;
         varying vec2 vUv;
         varying float vTemperature;
         ${shader.vertexShader}
@@ -342,20 +225,15 @@
           vec3 background = vec3(0., 0., 0.);
           vec3 highlightColor = vec3(1., 1., 1.);
           vec3 finalColor = mix(background, highlightColor, vTemperature);
-          vec4 diffuseColor = vec4( finalColor, opacity * vTemperature / 2. );
+          vec4 diffuseColor = vec4( finalColor, opacity * vTemperature / 3. );
         `
-      );
-    };
+      )
+    }
 
     // fbo mesh
     const fboMeshGeometry = new THREE.BufferGeometry();
-    const fboPlaneGeometryPositions = new Float32Array([
-      -1, -1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0,
-    ]);
-    fboMeshGeometry.setAttribute(
-      "position",
-      new THREE.BufferAttribute(fboPlaneGeometryPositions, 3)
-    );
+    const fboPlaneGeometryPositions = new Float32Array([-1, -1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0]);
+    fboMeshGeometry.setAttribute("position", new THREE.BufferAttribute(fboPlaneGeometryPositions, 3));
     const fboMeshMaterial = new THREE.ShaderMaterial({ uniforms: fboUniforms });
     const fboMesh = new THREE.Mesh(fboMeshGeometry, fboMeshMaterial);
     fboScene.add(fboMesh);
@@ -370,14 +248,12 @@
     let fboPositionRenderTarget2 = fboPositionRenderTarget1.clone();
     let fboVelocityRenderTarget1 = fboPositionRenderTarget1.clone();
     let fboVelocityRenderTarget2 = fboPositionRenderTarget1.clone();
-
+    
     function setTextGeometry() {
-      text.geometry = new THREE.PlaneGeometry(2, 2);
+      text.geometry = new THREE.PlaneGeometry( 2, 2 );
       text.geometry.computeBoundingBox();
-      const textWidth =
-        text.geometry.boundingBox.max.x - text.geometry.boundingBox.min.x;
-      const textHeight =
-        text.geometry.boundingBox.max.y - text.geometry.boundingBox.min.y;
+      const textWidth = text.geometry.boundingBox.max.x - text.geometry.boundingBox.min.x;
+      const textHeight = text.geometry.boundingBox.max.y - text.geometry.boundingBox.min.y;
 
       const surfaceSampler = new MeshSurfaceSampler(text).build();
       const geometry = new THREE.BufferGeometry();
@@ -391,7 +267,7 @@
         const i2 = i * 2;
         const i3 = i * 3;
         const i4 = i * 4;
-
+        
         // sample a postion from the surface of the text
         surfaceSampler.sample(tempPosition);
         const [x, y, z] = tempPosition;
@@ -405,55 +281,40 @@
         positions[i3 + 0] = (i % fboWidth) / fboWidth;
         positions[i3 + 1] = ~~(i / fboWidth) / fboHeight;
         positions[i3 + 2] = 0;
-
+        
         // calculate uv based on text's width and height
         const xlength = x - text.geometry.boundingBox.min.x;
         const ylength = x - text.geometry.boundingBox.min.y;
         uvs[i2 + 0] = xlength / textWidth;
         uvs[i2 + 1] = ylength / textHeight;
       }
-      geometry.setAttribute(
-        "position",
-        new THREE.BufferAttribute(positions, 3)
-      );
+      geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
       geometry.setAttribute("uv", new THREE.BufferAttribute(uvs, 2));
 
-      fboMesh.material.uniforms.uOriginalPositionsTexture.value =
-        new THREE.DataTexture(
+      fboMesh.material.uniforms.uOriginalPositionsTexture.value = new THREE.DataTexture(
           new Float32Array(fboPositionData), // wrap it in Float32Array again to make a copy
-          fboWidth,
-          fboHeight,
-          THREE.RGBAFormat,
-          THREE.FloatType
+          fboWidth, fboHeight, THREE.RGBAFormat, THREE.FloatType
         );
       fboMesh.material.uniforms.uOriginalPositionsTexture.value.needsUpdate = true;
-
+      
       fboMesh.material.uniforms.uPositionsTexture.value = new THREE.DataTexture(
-        new Float32Array(fboPositionData), // wrap it in Float32Array again to make a copy
-        fboWidth,
-        fboHeight,
-        THREE.RGBAFormat,
-        THREE.FloatType
-      );
+          new Float32Array(fboPositionData), // wrap it in Float32Array again to make a copy
+          fboWidth, fboHeight, THREE.RGBAFormat, THREE.FloatType
+        );
       fboMesh.material.uniforms.uPositionsTexture.value.needsUpdate = true;
 
-      fboMesh.material.uniforms.uVelocitiesTexture.value =
-        new THREE.DataTexture(
-          fboVelocityData,
-          fboWidth,
-          fboHeight,
-          THREE.RGBAFormat,
-          THREE.FloatType
-        );
+      fboMesh.material.uniforms.uVelocitiesTexture.value = new THREE.DataTexture(
+        fboVelocityData,
+        fboWidth, fboHeight, THREE.RGBAFormat, THREE.FloatType
+      );
       fboMesh.material.uniforms.uVelocitiesTexture.value.needsUpdate = true;
 
-      textUniforms.uPositionsTexture.value =
-        fboMesh.material.uniforms.uPositionsTexture.value;
+      textUniforms.uPositionsTexture.value = fboMesh.material.uniforms.uPositionsTexture.value;
       text.geometry = geometry;
       text.geometry.computeBoundingSphere();
       text.geometry.boundingSphere.radius = 1000;
     }
-
+    
     setTextGeometry();
     scene.add(text);
 
@@ -461,7 +322,7 @@
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: true,
-      // powerPerformance: "high-performance",
+      powerPerformance: "high-performance",
       canvas,
     });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
@@ -471,49 +332,31 @@
 
     // plane to capture mouse position
     const raycasterPlaneGeometry = new THREE.PlaneGeometry(100, 100);
-    const raycasterPlaneMaterial = new THREE.MeshBasicMaterial({
-      side: THREE.DoubleSide,
-      depthTest: false,
-      depthWrite: false,
-    });
-    const raycasterPlane = new THREE.Mesh(
-      raycasterPlaneGeometry,
-      raycasterPlaneMaterial
-    );
+    const raycasterPlaneMaterial = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, depthTest: false, depthWrite: false });
+    const raycasterPlane = new THREE.Mesh(raycasterPlaneGeometry, raycasterPlaneMaterial);
     raycasterPlane.position.set(0, 0, 0.5);
     raycasterPlane.visible = false;
     scene.add(raycasterPlane);
 
     // raycaster
     const raycaster = new THREE.Raycaster();
-    const pointer = new THREE.Vector3();
-    let gravity = 1;
-    function onPointerUp(event) {
-      gravity = 1;
-    }
-
-    function onPointerDown(event) {
-      gravity = -1;
-    }
-
+    const pointer = new THREE.Vector2();
     function onPointerMove(event) {
       pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
-      pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+	    pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
     }
     let pointerStartCountdown = 0;
-
+    
     // clock
     const clock = new THREE.Clock();
-
+    
     function render() {
-      const delta = Math.min(clock.getDelta(), 0.004);
+      const delta = clock.getDelta();
       const time = clock.getElapsedTime();
-
+      
       // fbo
-      if (!fboMesh.material.uniforms.uPositionsTexture.value)
-        return requestAnimationFrame(render);
-      if (!fboMesh.material.uniforms.uVelocitiesTexture.value)
-        return requestAnimationFrame(render);
+      if (!fboMesh.material.uniforms.uPositionsTexture.value) return requestAnimationFrame(render);
+      if (!fboMesh.material.uniforms.uVelocitiesTexture.value) return requestAnimationFrame(render);
       const temp = fboVelocityRenderTarget1;
       fboVelocityRenderTarget1 = fboVelocityRenderTarget2;
       fboVelocityRenderTarget2 = temp;
@@ -523,8 +366,7 @@
       renderer.setRenderTarget(fboVelocityRenderTarget1);
       renderer.clear();
       renderer.render(fboScene, fboCamera);
-      fboMesh.material.uniforms.uVelocitiesTexture.value =
-        fboVelocityRenderTarget1.texture;
+      fboMesh.material.uniforms.uVelocitiesTexture.value = fboVelocityRenderTarget1.texture;
       const temp2 = fboPositionRenderTarget1;
       fboPositionRenderTarget1 = fboPositionRenderTarget2;
       fboPositionRenderTarget2 = temp2;
@@ -534,33 +376,26 @@
       renderer.setRenderTarget(fboPositionRenderTarget1);
       renderer.clear();
       renderer.render(fboScene, fboCamera);
-      fboMesh.material.uniforms.uPositionsTexture.value =
-        fboPositionRenderTarget1.texture;
+      fboMesh.material.uniforms.uPositionsTexture.value = fboPositionRenderTarget1.texture;
       renderer.setRenderTarget(null);
-      textUniforms.uPositionsTexture.value =
-        fboMesh.material.uniforms.uPositionsTexture.value;
-      textUniforms.uGravity.value = gravity;
+      textUniforms.uPositionsTexture.value = fboMesh.material.uniforms.uPositionsTexture.value;
 
       fboMesh.material.uniforms.uTime.value = time;
       fboMesh.material.uniforms.uDeltaTime.value = delta;
-      fboMesh.material.uniforms.uGravity.value = gravity;
-
+      
       // raycaster
       raycaster.setFromCamera(pointer, camera);
       const intersects = raycaster.intersectObjects([raycasterPlane]);
       if (intersects[0]) {
-        fboMesh.material.uniforms.uPointer.value = intersects[0].point
-          .clone()
-          .sub(text.position);
+        fboMesh.material.uniforms.uPointer.value = intersects[0].point.clone().sub(text.position);
       }
       if (pointerStartCountdown <= 0) {
-        fboMesh.material.uniforms.uPointerStart.value =
-          fboMesh.material.uniforms.uPointer.value;
+        fboMesh.material.uniforms.uPointerStart.value = fboMesh.material.uniforms.uPointer.value;
         pointerStartCountdown = 10;
       } else {
         pointerStartCountdown -= 1;
       }
-
+      
       renderer.render(scene, camera);
       requestAnimationFrame(render);
     }
@@ -568,16 +403,13 @@
     requestAnimationFrame(render);
 
     window.addEventListener("pointermove", onPointerMove);
-    window.addEventListener("pointerdown", onPointerDown);
-    window.addEventListener("pointerup", onPointerUp);
     window.addEventListener("resize", onWindowResize);
 
-    function onWindowResize() {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      camera.position.z =
-        window.innerWidth < 500 ? 76 : window.innerWidth < 980 ? 46 : 26;
-      renderer.setSize(window.innerWidth, window.innerHeight);
+    function onWindowResize(){
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        camera.position.z = window.innerWidth < 500 ? 76 : window.innerWidth < 980 ? 46 : 26;
+        renderer.setSize(window.innerWidth, window.innerHeight);
     }
   </script>
 </html>

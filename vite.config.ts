@@ -3,8 +3,10 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
+  base: process.env.NODE_ENV === "production" ? "/serotonin-homepage/" : undefined,
   plugins: [
     remix({
+      basename: process.env.NODE_ENV === "production" ? "/serotonin-homepage/" : undefined,
       ssr: false,
       future: {
         v3_fetcherPersist: true,

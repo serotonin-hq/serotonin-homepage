@@ -71,9 +71,9 @@ function FarcasterIcon(props: React.SVGAttributes<SVGSVGElement>) {
   );
 }
 
-export default function SocialNav() {
+export default function SocialNav(props: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div>
+    <div {...props}>
       <div className="flex items-center gap-1">
         <Link
           to="https://twitter.com/serotonin_hq"

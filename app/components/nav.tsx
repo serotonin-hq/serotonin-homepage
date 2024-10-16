@@ -1,5 +1,5 @@
 import { NavLink, NavLinkProps, useLocation } from "@remix-run/react";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import BlankArrow from "~/components/blank-arrow";
 import Logo from "~/components/logo";
 import ScrollText from "~/components/scroll-text";
@@ -18,9 +18,14 @@ const className: NavLinkProps["className"] = ({ isActive }) =>
 
 export default function Nav() {
   const location = useLocation();
+  const [isFull, setIsFull] = useState(false);
+
+  useEffect(() => {
+    setIsFull(location.pathname !== "/");
+  }, [location.pathname]);
 
   const handleDarkMode = useCallback(() => {
-    if (location.pathname !== '/') return;
+    if (location.pathname !== "/") return;
     const colorMode = localStorage.getItem("color-mode") ?? "dark";
     localStorage.setItem("color-mode", colorMode === "dark" ? "light" : "dark");
   }, [location.pathname]);
@@ -66,9 +71,9 @@ export default function Nav() {
             className="animate-[spin_16s_linear_infinite] [animation-direction:reverse]"
           />
         </NavLink>
-        {location.pathname !== "/" && (
+        {isFull && (
           <>
-            <nav className="md:pt-20 md:block grid grid-cols-2 gap-2 pt-[144px] col-span-3 md:flex-grow">
+            <nav className="opacity-100 pointer-events-none transition-opacity md:pt-20 md:block grid grid-cols-2 gap-2 pt-[144px] col-span-3 md:flex-grow">
               <ul className="pb-7">
                 <li>
                   <NavLink to="/marketing" className={className}>

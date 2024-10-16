@@ -5,13 +5,13 @@ import ScrollText from "~/components/scroll-text";
 import SocialNav from "~/components/social-nav";
 import { cn } from "~/utils/cn";
 
-const baseClassName = "uppercase hover:pl-4 leading-7";
+const baseClassName = "relative uppercase hover:pl-4 leading-7";
 
 const className: NavLinkProps["className"] = ({ isActive }) =>
   cn(
     baseClassName,
     isActive
-      ? "inline-block font-bold pl-4 relative before:absolute before:text-xs before:pt-1 before:left-0 before:content-['•']"
+      ? "inline-block font-bold pl-4 before:absolute before:text-xs before:pt-1 before:left-0 before:content-['•']"
       : ""
   );
 

@@ -454,7 +454,7 @@ export default function Clients() {
       {clients.map((section, i) => (
         <div
           key={i}
-          className="col-span-3 flex flex-wrap items-center justify-start leading-7"
+          className="col-span-3 flex flex-wrap items-start justify-start leading-7 h-min"
         >
           {section.map((client, j) => (
             <React.Fragment key={client.name}>

@@ -7,8 +7,12 @@ body {
   @apply bg-white dark:bg-black tracking-[-0.03em];
   font-family: "GT America Mono", monospace;
   font-weight: 400;
-
+  --bg-color: black;
+  --text-color: white;
+  
   @media (prefers-color-scheme: dark) {
+    --bg-color: white;
+    --text-color: black;
     color-scheme: dark;
   }
 }

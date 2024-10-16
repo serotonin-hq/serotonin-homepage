@@ -1,12 +1,16 @@
 import { useCallback, useEffect, useRef } from "react";
 
-const MAX_STEPS = 6;
+const MAX_STEPS = 4;
 
 interface ScrollText extends React.HTMLProps<HTMLSpanElement> {
   hoverable?: boolean;
 }
 
-export default function ScrollText({ hoverable, ...props }: ScrollText) {
+export default function ScrollText({
+  hoverable,
+  className,
+  ...props
+}: ScrollText) {
   const ref = useRef<HTMLSpanElement>(null);
   const textContent = useRef<string>("");
 
@@ -34,8 +38,9 @@ export default function ScrollText({ hoverable, ...props }: ScrollText) {
   return (
     <span
       ref={ref}
-      onPointerEnter={hoverable ? animate : undefined}
+      onMouseEnter={hoverable ? animate : undefined}
       {...props}
+      className={className}
     />
   );
 }

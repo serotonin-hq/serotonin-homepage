@@ -28,7 +28,7 @@ export default function SearchLight({
       ref.current.style.backgroundPositionY = `${lastY}px`;
       ref.current.style.backgroundSize = `100% ${aspect * 100}%`;
       ref.current.style.backgroundImage =
-        "radial-gradient(white, transparent 30%)";
+        "radial-gradient(var(--bg-color), transparent 30%)";
       animationFrame = requestAnimationFrame(animate);
       lastTime = Date.now();
     }
@@ -55,7 +55,7 @@ export default function SearchLight({
   return (
     <div
       ref={ref}
-      className={cn("bg-clip-text bg-white/30 bg-no-repeat", className)}
+      className={cn("bg-clip-text bg-black/30 dark:bg-white/30 bg-no-repeat", className)}
       {...props}
     />
   );

@@ -1,25 +1,51 @@
-## one million particles
+# templates/spa
 
-one million particles rendered with the **gpgpu** technique using **three.js** and **webgl**.
+This template leverages [Remix SPA Mode](https://remix.run/docs/en/main/guides/spa-mode) to build your app as a Single-Page Application using [Client Data](https://remix.run/docs/en/main/guides/client-data) for all of your data loads and mutations.
 
-<p align="center">
-  <img src="https://github.com/poeti8/what-can-you-do-with-a-particle/assets/23660003/31e2fae0-2e61-4d0b-a37c-45c89f2cd23e.gif" alt="demo" />
-</p>
+## Setup
 
-<p align="center">
-  <a href="https://pouria.dev/one-million-particles" target="__blank" title="view experiment">view experiment ↗︎</a>
-  <span style="margin: 0 8px;">·</span>
-  <a href="https://www.youtube.com/watch?v=7aynyPX80BQ" target="__blank" title="watch video">watch explaination video ↗︎</a>
-</p>
-
-## run locally
-
-you can't simply open the html file because the three.js things won't work for security reasons—[as they say](https://threejs.org/docs/#manual/en/introduction/Installation).
-
-so you need to open it in a local server. you can use [http-server](https://github.com/http-party/http-server), [serve](https://github.com/vercel/serve), or alike.
-
-one example if you have [npm](https://www.npmjs.com/):
-
-```sh
-npx serve .
+```shellscript
+npx create-remix@latest --template remix-run/remix/templates/spa
 ```
+
+## Development
+
+You can develop your SPA app just like you would a normal Remix app, via:
+
+```shellscript
+npm run dev
+```
+
+## Production
+
+When you are ready to build a production version of your app, `npm run build` will generate your assets and an `index.html` for the SPA.
+
+```shellscript
+npm run build
+```
+
+### Preview
+
+You can preview the build locally with [vite preview](https://vitejs.dev/guide/cli#vite-preview) to serve all routes via the single `index.html` file:
+
+```shellscript
+npm run preview
+```
+
+> [!IMPORTANT]
+>
+> `vite preview` is not designed for use as a production server
+
+### Deployment
+
+You can then serve your app from any HTTP server of your choosing. The server should be configured to serve multiple paths from a single root `/index.html` file (commonly called "SPA fallback"). Other steps may be required if the server doesn't directly support this functionality.
+
+For a simple example, you could use [sirv-cli](https://www.npmjs.com/package/sirv-cli):
+
+```shellscript
+npx sirv-cli build/client/ --single
+```
+
+## Styling
+
+This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.

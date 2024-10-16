@@ -1,0 +1,1 @@
+import{j as r}from"./jsx-runtime-BMrMXMSG.js";import{O as s}from"./index-Dz6WBrsU.js";function o(){return r.jsx("div",{className:"grid grid-cols-12 grid-rows-1 gap-6",children:r.jsx("div",{className:"md:pt-[160px] pt-8 md:col-start-4 p-8 md:col-span-9 col-span-12 md:grid flex grid-cols-6 lg:grid-cols-9 grid-rows-1 gap-6 pr-8 pb-8",children:r.jsx(s,{})})})}export{o as default};

@@ -1,4 +1,5 @@
 import { Link } from "@remix-run/react";
+import ScrollText from "~/components/scroll-text";
 
 function XIcon(props: React.SVGAttributes<SVGSVGElement>) {
   return (
@@ -101,14 +102,14 @@ export default function SocialNav() {
           to="/terms"
           className="uppercase text-[11px] opacity-30 hover:opacity-100 transition-opacity"
         >
-          Terms
+          <ScrollText hoverable>Terms</ScrollText>
         </Link>
         <span className="text-[11px] opacity-30">•</span>
         <Link
           to="/privacy"
           className="uppercase text-[11px] opacity-30 hover:opacity-100 transition-opacity"
         >
-          Privacy
+          <ScrollText hoverable>Privacy</ScrollText>
         </Link>
       </div>
     </div>

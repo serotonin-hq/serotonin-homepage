@@ -1,4 +1,5 @@
 import { NavLink, NavLinkProps, useLocation } from "@remix-run/react";
+import { useCallback } from "react";
 import BlankArrow from "~/components/blank-arrow";
 import Logo from "~/components/logo";
 import ScrollText from "~/components/scroll-text";
@@ -18,11 +19,20 @@ const className: NavLinkProps["className"] = ({ isActive }) =>
 export default function Nav() {
   const location = useLocation();
 
+  const handleDarkMode = useCallback(() => {
+    if (location.pathname !== '/') return;
+    const colorMode = localStorage.getItem("color-mode") ?? "dark";
+    localStorage.setItem("color-mode", colorMode === "dark" ? "light" : "dark");
+  }, [location.pathname]);
+
   return (
     <>
       <header className="flex items-start justify-between fixed md:left-auto left-8 right-8 top-8 z-10">
         <NavLink className="md:hidden" to="/">
-          <Logo className="animate-[spin_16s_linear_infinite] [animation-direction:reverse]" />
+          <Logo
+            onClick={handleDarkMode}
+            className="animate-[spin_16s_linear_infinite] [animation-direction:reverse]"
+          />
         </NavLink>
         <nav>
           <ul className="flex flex-col items-end">
@@ -51,7 +61,10 @@ export default function Nav() {
       </header>
       <div className="md:fixed inset-y-8 md:right-auto right-0 pl-8 flex flex-col">
         <NavLink className="md:block hidden" to="/">
-          <Logo className="animate-[spin_16s_linear_infinite] [animation-direction:reverse]" />
+          <Logo
+            onClick={handleDarkMode}
+            className="animate-[spin_16s_linear_infinite] [animation-direction:reverse]"
+          />
         </NavLink>
         {location.pathname !== "/" && (
           <>

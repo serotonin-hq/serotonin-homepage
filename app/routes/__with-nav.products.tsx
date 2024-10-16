@@ -15,7 +15,7 @@ export default function Products() {
           >
             <ScrollText hoverable>Spindl</ScrollText>
           </Link>
-          <BlankArrow className="shrink-0 md:opacity-0 peer-hover:opacity-100 transition-opacity text-white" />
+          <BlankArrow className="shrink-0 md:opacity-0 peer-hover:opacity-100 transition-opacity text-black dark:text-white" />
         </div>
         <Link
           target="__blank"
@@ -39,7 +39,7 @@ export default function Products() {
           >
             <ScrollText hoverable>Mojito</ScrollText>
           </Link>
-          <BlankArrow className="shrink-0 md:opacity-0 peer-hover:opacity-100 transition-opacity text-white" />
+          <BlankArrow className="shrink-0 md:opacity-0 peer-hover:opacity-100 transition-opacity text-black dark:text-white" />
         </div>
         <Link
           target="__blank"
@@ -62,7 +62,7 @@ export default function Products() {
           >
             <ScrollText hoverable>Franklin</ScrollText>
           </Link>
-          <BlankArrow className="shrink-0 md:opacity-0 peer-hover:opacity-100 transition-opacity text-white" />
+          <BlankArrow className="shrink-0 md:opacity-0 peer-hover:opacity-100 transition-opacity text-black dark:text-white" />
         </div>
         <Link
           target="__blank"

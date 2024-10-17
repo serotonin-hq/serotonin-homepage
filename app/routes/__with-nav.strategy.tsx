@@ -2,7 +2,7 @@ import ScrollText from "~/components/scroll-text";
 
 export default function Strategy() {
   return (
-    <div className="col-span-3 leading-7">
+    <div className="col-span-3 leading-7 min-w-[320px]">
       <ScrollText>
         We are natives of frontier technology, guiding companies to new
         opportunities through strategic transformation. We align a company{"'"}s

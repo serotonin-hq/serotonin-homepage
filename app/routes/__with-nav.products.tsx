@@ -5,7 +5,7 @@ import SearchLight from "~/components/search-light";
 
 export default function Products() {
   return (
-    <SearchLight className="md:col-span-9 md:grid md:grid-cols-9 grid-cols-6 gap-6 md:text-transparent">
+    <SearchLight className="lg:col-span-9 md:col-span-6 md:grid-rows-2 sm:grid lg:grid-cols-9 grid-cols-6 gap-6 md:text-transparent">
       <div className="col-span-3 mb-6 md:mb-0 leading-7">
         <div className="pb-7 flex items-center gap-0.5">
           <Link
@@ -53,7 +53,7 @@ export default function Products() {
         commerce platform of choice for Sotheby{"'"}s, Mercedes, Pernod Ricard,
         and more Mojito lets teams easily manage and sell onchain products.
       </div>
-      <div className="col-span-3 leading-7">
+      <div className="col-span-3 leading-7 min-w-[320px]">
         <div className="pb-7 flex items-center gap-0.5">
           <Link
             target="__blank"

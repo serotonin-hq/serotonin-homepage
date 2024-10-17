@@ -1,6 +1,7 @@
 import {
   Links,
   Meta,
+  MetaFunction,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -12,10 +13,20 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import "./tailwind.css";
 import Nav from "~/components/nav";
 import { cn } from "~/utils/cn";
+import { baseMeta } from "~/utils/meta";
 
 const Particles = lazy(() => import("~/components/particles"));
 
-export const links: LinksFunction = () => [];
+export const meta: MetaFunction = () => {
+  return baseMeta(
+    "Serotonin - Taking Web3 Brands to Market",
+    "Serotonin is the leading web3 marketing and product studio, helping dozens of the world's leading companies build the future of the internet."
+  );
+};
+
+export const links: LinksFunction = () => {
+  return []
+};
 
 export const clientLoader = () => {
   return { colorMode: localStorage.getItem("color-mode") };

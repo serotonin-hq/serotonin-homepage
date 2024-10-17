@@ -1,4 +1,13 @@
+import { MetaFunction } from "@remix-run/react";
 import ScrollText from "~/components/scroll-text";
+import { baseMeta } from "~/utils/meta";
+
+export const meta: MetaFunction = () => {
+  return baseMeta(
+    "Business & Compliance Services",
+    "With a founder-first approach, Serotonin provides comprehensive business and compliance services for startups and VC firms, from formation through growth stages, including compliance, fundraising, and M&As."
+  );
+};
 
 export default function Legal() {
   return (

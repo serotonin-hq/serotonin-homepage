@@ -1,4 +1,13 @@
+import { MetaFunction } from "@remix-run/react";
 import ScrollText from "~/components/scroll-text";
+import { baseMeta } from "~/utils/meta";
+
+export const meta: MetaFunction = () => {
+  return baseMeta(
+    "Serotonin Web3 Recruiting Services",
+    "Serotonin’s web3 recruiting service finds the best talent in the industry for your startup, application, or company."
+  );
+};
 
 export default function Recruiting() {
   return (

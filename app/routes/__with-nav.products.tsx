@@ -1,7 +1,15 @@
-import { Link } from "@remix-run/react";
+import { Link, MetaFunction } from "@remix-run/react";
 import BlankArrow from "~/components/blank-arrow";
 import ScrollText from "~/components/scroll-text";
 import SearchLight from "~/components/search-light";
+import { baseMeta } from "~/utils/meta";
+
+export const meta: MetaFunction = () => {
+  return baseMeta(
+    "Serotonin Web3 Products",
+    "Serotonin’s web3 product studio builds and launches solutions targeting creators’, brands’, and companies’ greatest opportunities."
+  );
+};
 
 export default function Products() {
   return (

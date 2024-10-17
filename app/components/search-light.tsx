@@ -55,7 +55,7 @@ export default function SearchLight({
   return (
     <div
       ref={ref}
-      className={cn("bg-clip-text bg-black/30 dark:bg-white/30 bg-no-repeat", className)}
+      className={cn("bg-clip-text bg-[#111]/30 dark:bg-[#EEE]/30 bg-no-repeat", className)}
       {...props}
     />
   );

@@ -23,11 +23,11 @@ export default function Products() {
           >
             <ScrollText hoverable>Spindl</ScrollText>
           </Link>
-          <BlankArrow className="shrink-0 md:opacity-0 peer-hover:opacity-100 transition-opacity text-black dark:text-white" />
+          <BlankArrow className="shrink-0 md:opacity-0 peer-hover:opacity-100 transition-opacity text-[#111] dark:text-[#EEE]" />
         </div>
         <Link
           target="__blank"
-          className="underline md:text-white/30"
+          className="underline md:text-[#EEE]/30"
           to="https://www.spindl.xyz/"
         >
           <ScrollText hoverable>Spindl</ScrollText>
@@ -47,11 +47,11 @@ export default function Products() {
           >
             <ScrollText hoverable>Mojito</ScrollText>
           </Link>
-          <BlankArrow className="shrink-0 md:opacity-0 peer-hover:opacity-100 transition-opacity text-black dark:text-white" />
+          <BlankArrow className="shrink-0 md:opacity-0 peer-hover:opacity-100 transition-opacity text-[#111] dark:text-[#EEE]" />
         </div>
         <Link
           target="__blank"
-          className="underline md:text-white/30"
+          className="underline md:text-[#EEE]/30"
           to="https://getmojito.com/"
         >
           <ScrollText hoverable>Mojito</ScrollText>
@@ -70,11 +70,11 @@ export default function Products() {
           >
             <ScrollText hoverable>Franklin</ScrollText>
           </Link>
-          <BlankArrow className="shrink-0 md:opacity-0 peer-hover:opacity-100 transition-opacity text-black dark:text-white" />
+          <BlankArrow className="shrink-0 md:opacity-0 peer-hover:opacity-100 transition-opacity text-[#111] dark:text-[#EEE]" />
         </div>
         <Link
           target="__blank"
-          className="underline md:text-white/30"
+          className="underline md:text-[#EEE]/30"
           to="https://www.hellofranklin.co/"
         >
           <ScrollText hoverable>Franklin</ScrollText>

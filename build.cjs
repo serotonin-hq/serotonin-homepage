@@ -11,8 +11,31 @@ const files = glob.readdirSync(
   "app/routes/__with-nav.*.tsx"
 );
 
-files
-  .map((file) => file.split(".")[1])
-  .forEach((file) => {
-    fs.copyFileSync(indexFile, `${path.resolve(buildPath, file)}.html`);
-  });
+const routes = files.map((file) => file.split(".")[1]);
+
+routes.forEach((file) => {
+  fs.copyFileSync(indexFile, `${path.resolve(buildPath, file)}.html`);
+});
+
+const sitemap = `
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<url>
+    <loc>
+        https://www.serotonin.co
+    </loc>
+</url>
+${routes
+  .map(
+    (route) => 
+`<url>
+    <loc>
+        https://www.serotonin.co/${route}
+    </loc>
+</url>`
+  )
+  .join("\n")}
+</urlset>
+`.trim();
+
+fs.writeFileSync(path.resolve(buildPath, "sitemap.xml"), sitemap);

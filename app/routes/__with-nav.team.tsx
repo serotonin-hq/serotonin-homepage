@@ -11,10 +11,9 @@ export const meta: MetaFunction = () => {
   );
 };
 
-
 export default function Team() {
   return (
-    <SearchLight className="flex flex-col col-span-6 md:col-span-9 gap-6">
+    <SearchLight className="flex flex-col col-span-6 md:col-span-9 gap-6 grid-rows-[min-content]">
       <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
         <TeamMember
           className="col-span-2"
@@ -51,7 +50,7 @@ export default function Team() {
       </div>
       <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6 page-team-row_break">
         <TeamMember
-          className="col-start-3 col-span-4 md:pb-0 mb-12"
+          className="col-start-3 col-span-4 md:mb-0 mb-12"
           name="Teddy Ellison"
           title="Legal Services Managing Partner"
         />
@@ -90,7 +89,7 @@ export default function Team() {
           title="PR Director"
         />
         <TeamMember
-          className="col-span-3 mb-12"
+          className="col-span-3 md:mb-0 mb-12"
           name="Katie Narain"
           title="Web3 Member Experience Lead"
         />
@@ -139,8 +138,10 @@ export default function Team() {
           name="Vanina Ivanova"
           title="Marketing Director"
         />
+      </div>
+      <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6 page-team-row_break">
         <TeamMember
-          className="col-span-2"
+          className="col-start-5 col-span-2"
           name="Celento George"
           title="Founding Engineer"
         />
@@ -152,9 +153,14 @@ export default function Team() {
       </div>
       <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
         <TeamMember
-          className="col-start-5 col-span-4"
+          className="col-start-5 col-span-2"
           name="José Cazares"
           title="Senior Brand Designer"
+        />
+        <TeamMember
+          className="col-span-3 md:mb-0 mb-12"
+          name="Ryan Lasswell"
+          title="Founding Product Designer"
         />
       </div>
       <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6 page-team-row_reverse">
@@ -167,11 +173,6 @@ export default function Team() {
           className="col-span-4"
           name="Anouk Morin"
           title="PR Associate"
-        />
-        <TeamMember
-          className="col-span-3"
-          name="Ryan Lasswell"
-          title="Founding Product Designer"
         />
       </div>
       <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">

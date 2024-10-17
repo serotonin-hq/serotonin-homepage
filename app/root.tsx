@@ -25,7 +25,11 @@ export const meta: MetaFunction = () => {
 };
 
 export const links: LinksFunction = () => {
-  return []
+  return [{
+    rel: "icon",
+    type: "image/x-icon",
+    href: "/serotonin-homepage/favicon.ico"
+  }]
 };
 
 export const clientLoader = () => {

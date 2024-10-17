@@ -73,7 +73,7 @@ export default function Nav() {
         </NavLink>
         {isFull && (
           <>
-            <nav className="opacity-100 pointer-events-none transition-opacity md:pt-20 md:block grid grid-cols-2 gap-2 pt-[144px] col-span-3 md:flex-grow">
+            <nav className="md:pt-20 md:block grid grid-cols-2 gap-2 pt-[144px] col-span-3 md:flex-grow">
               <ul className="pb-7">
                 <li>
                   <NavLink to="/marketing" className={className}>

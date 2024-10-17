@@ -56,7 +56,7 @@ export default function Nav() {
                   "uppercase leading-7 transition-opacity",
                   location.pathname === "/" ? "opacity-100" : "opacity-30"
                 )}
-                to="marketing"
+                to="/web3-marketing"
               >
                 <ScrollText hoverable>About</ScrollText>
               </NavLink>
@@ -76,7 +76,7 @@ export default function Nav() {
             <nav className="md:pt-20 md:block grid grid-cols-2 gap-2 pt-[144px] col-span-3 md:flex-grow">
               <ul className="pb-7">
                 <li>
-                  <NavLink to="/marketing" className={className}>
+                  <NavLink to="/web3-marketing" className={className}>
                     <ScrollText hoverable>Marketing</ScrollText>
                   </NavLink>
                 </li>
@@ -86,12 +86,12 @@ export default function Nav() {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/recruiting" className={className}>
+                  <NavLink to="/web3-recruiting" className={className}>
                     <ScrollText hoverable>Recruiting</ScrollText>
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/legal" className={className}>
+                  <NavLink to="/legal-services" className={className}>
                     <ScrollText hoverable>Legal</ScrollText>
                   </NavLink>
                 </li>
@@ -118,7 +118,7 @@ export default function Nav() {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/team" className={className}>
+                  <NavLink to="/our-team" className={className}>
                     <ScrollText hoverable>Team</ScrollText>
                   </NavLink>
                 </li>

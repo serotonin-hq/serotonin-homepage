@@ -99,14 +99,14 @@ export default function SocialNav(props: React.HTMLAttributes<HTMLDivElement>) {
       </div>
       <div className="flex items-center gap-1 leading-7 pt-2">
         <Link
-          to="/terms"
+          to="/platform-terms"
           className="uppercase text-[11px] opacity-30 hover:opacity-100 transition-opacity"
         >
           <ScrollText hoverable>Terms</ScrollText>
         </Link>
         <span className="text-[11px] opacity-30">•</span>
         <Link
-          to="/privacy"
+          to="/platform-privacy"
           className="uppercase text-[11px] opacity-30 hover:opacity-100 transition-opacity"
         >
           <ScrollText hoverable>Privacy</ScrollText>

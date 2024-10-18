@@ -450,7 +450,7 @@ const clients = [
 
 export default function Clients() {
   return (
-    <SearchLight className="md:col-span-6 md:grid flex flex-col grid-rows-[min-content,min-content] grid-cols-[repeat(6,auto)] gap-6">
+    <SearchLight className="2xl:col-span-6 md:col-span-9 md:grid flex flex-col grid-rows-[min-content,min-content] grid-cols-[repeat(6,auto)] justify-start gap-6">
       {clients.map((section, i) => (
         <div
           key={i}

@@ -11,14 +11,14 @@ export const baseMeta = (title: string, description: string) => {
     {
       property: "og:image",
       content:
-        "https://uploads-ssl.webflow.com/643ec1520f5bd43cd10eaf73/644fd0d4366cf8f42fb982ae_Opengraph.png",
+        "https://serotonin-hq.github.io/serotonin-homepage/web-preview.png",
     },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
     {
       name: "twitter:image",
       content:
-        "https://uploads-ssl.webflow.com/643ec1520f5bd43cd10eaf73/644fd0d4366cf8f42fb982ae_Opengraph.png",
+        "https://serotonin-hq.github.io/serotonin-homepage/web-preview.png",
     },
   ];
 };

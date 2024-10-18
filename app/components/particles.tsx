@@ -419,13 +419,14 @@ export default function Particles() {
     scene.add(text);
 
     const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true,
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
       powerPerformance: "high-performance",
+      failIfMajorPerformanceCaveat: true,
+      preserveDrawingBuffer: true,
       canvas: canvas.current,
     });
+    
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x0000000);

@@ -568,7 +568,7 @@ export default function Particles() {
   return (
     <canvas
       ref={canvas}
-      className="transition-opacity fixed inset-0 z-30 mix-blend-difference pointer-events-none"
+      className="transition-opacity fixed inset-0 z-30 mix-blend-exclusion pointer-events-none"
     />
   );
 }

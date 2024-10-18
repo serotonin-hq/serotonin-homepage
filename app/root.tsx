@@ -43,7 +43,7 @@ export const links: LinksFunction = () => {
   ];
 };
 
-export const darkModeAtom = atomWithStorage("darkMode", false);
+export const darkModeAtom = atomWithStorage("darkMode", true);
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const darkMode = useAtomValue(darkModeAtom);

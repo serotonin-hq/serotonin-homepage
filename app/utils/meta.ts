@@ -20,5 +20,9 @@ export const baseMeta = (title: string, description: string) => {
       content:
         "https://serotonin-hq.github.io/serotonin-homepage/web-preview.png",
     },
+    {
+      name: "google-site-verification",
+      content: "KdlnCe8RqDr_i9klinMMwtVo20i7O4RNao8Hkoho6Uk"
+    },
   ];
 };

@@ -134,7 +134,7 @@ export default function Team() {
       </div>
       <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6 page-team-row_break">
         <TeamMember
-          className="col-span-4 mb-12"
+          className="col-span-4 md:mb-0 mb-12"
           name="Vanina Ivanova"
           title="Marketing Director"
         />

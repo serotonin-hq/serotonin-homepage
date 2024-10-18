@@ -28,7 +28,7 @@ export default function SearchLight({
       ref.current.style.backgroundPositionY = `${lastY}px`;
       ref.current.style.backgroundSize = `100% ${aspect * 100}%`;
       ref.current.style.backgroundImage =
-        "radial-gradient(var(--bg-color), transparent 30%)";
+        "radial-gradient(var(--text-color), transparent 30%)";
       animationFrame = requestAnimationFrame(animate);
       lastTime = Date.now();
     }

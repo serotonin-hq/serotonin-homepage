@@ -2,20 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  @apply bg-[#EEE] dark:bg-[#111] tracking-[-0.03em];
-  font-family: "GT America Mono", monospace;
-  font-weight: 400;
+:root {
   --bg-color: #111;
   --text-color: #EEE;
-  
-  @media (prefers-color-scheme: dark) {
-    --bg-color: #EEE;
-    --text-color: #111;
-    color-scheme: dark;
-  }
 }
+
+.dark {
+  --bg-color: #EEE;
+  --text-color: #111;
+}
+
+html,
+body {
+  @apply bg-[var(--bg-color)] text-[var(--text-color)] tracking-[-0.03em];
+  font-family: "GT America Mono", monospace;
+  font-weight: 400;
+}
+
 
 @font-face {
   font-family: "GT America Mono";

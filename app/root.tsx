@@ -5,15 +5,21 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
-import { lazy, Suspense, useEffect, useState } from "react";
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useState,
+} from "react";
 
 import "./tailwind.css";
 import Nav from "~/components/nav";
 import { cn } from "~/utils/cn";
 import { baseMeta } from "~/utils/meta";
+import { atomWithStorage } from "jotai/utils";
+import { useAtomValue } from "jotai";
 
 const Particles = lazy(() => import("~/components/particles"));
 
@@ -25,19 +31,22 @@ export const meta: MetaFunction = () => {
 };
 
 export const links: LinksFunction = () => {
-  return [{
-    rel: "icon",
-    type: "image/x-icon",
-    href: process.env.NODE_ENV === "production" ? "/serotonin-homepage/favicon.ico" : "/favicon.ico"
-  }]
+  return [
+    {
+      rel: "icon",
+      type: "image/x-icon",
+      href:
+        process.env.NODE_ENV === "production"
+          ? "/serotonin-homepage/favicon.ico"
+          : "/favicon.ico",
+    },
+  ];
 };
 
-export const clientLoader = () => {
-  return { colorMode: localStorage.getItem("color-mode") };
-};
+export const darkModeAtom = atomWithStorage("darkMode", false);
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const data = useLoaderData<typeof clientLoader>();
+  const darkMode = useAtomValue(darkModeAtom);
   const [isHydrated, setHydrated] = useState(false);
   useEffect(() => {
     setHydrated(true);
@@ -47,7 +56,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
     <html
       lang="en"
       className={cn(
-        data?.colorMode === "light" ? "invert" : "invert-0",
+        darkMode && "dark",
         "antialiased select-none transition-[filter] duration-500"
       )}
     >

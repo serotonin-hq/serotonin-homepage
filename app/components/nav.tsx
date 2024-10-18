@@ -1,9 +1,11 @@
 import { NavLink, NavLinkProps, useLocation } from "@remix-run/react";
+import { useSetAtom } from "jotai";
 import { useCallback, useEffect, useState } from "react";
 import BlankArrow from "~/components/blank-arrow";
 import Logo from "~/components/logo";
 import ScrollText from "~/components/scroll-text";
 import SocialNav from "~/components/social-nav";
+import { darkModeAtom } from "~/root";
 import { cn } from "~/utils/cn";
 
 const baseClassName = "relative uppercase hover:pl-4 leading-7";
@@ -18,24 +20,23 @@ const className: NavLinkProps["className"] = ({ isActive }) =>
 
 export default function Nav() {
   const location = useLocation();
+  const setDarkAtom = useSetAtom(darkModeAtom);
   const [isFull, setIsFull] = useState(false);
 
   useEffect(() => {
     setIsFull(location.pathname !== "/");
   }, [location.pathname]);
 
-  const handleDarkMode = useCallback(() => {
-    if (location.pathname !== "/") return;
-    const colorMode = localStorage.getItem("color-mode") ?? "dark";
-    localStorage.setItem("color-mode", colorMode === "dark" ? "light" : "dark");
-  }, [location.pathname]);
+  const toggleDark = useCallback(() => {
+    setDarkAtom(d => !d);
+  }, [setDarkAtom])
 
   return (
     <>
       <header className="flex items-start justify-between fixed md:left-auto left-8 right-8 top-8 z-10">
         <NavLink className="md:hidden" to="/">
           <Logo
-            onClick={handleDarkMode}
+            onClick={toggleDark}
             className="animate-[spin_16s_linear_infinite] [animation-direction:reverse]"
           />
         </NavLink>
@@ -67,7 +68,7 @@ export default function Nav() {
       <div className="md:fixed inset-y-8 md:right-auto right-0 pl-8 flex flex-col">
         <NavLink className="md:block hidden" to="/">
           <Logo
-            onClick={handleDarkMode}
+            onClick={toggleDark}
             className="animate-[spin_16s_linear_infinite] [animation-direction:reverse]"
           />
         </NavLink>

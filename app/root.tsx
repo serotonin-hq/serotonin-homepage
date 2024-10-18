@@ -25,8 +25,8 @@ const Particles = lazy(() => import("~/components/particles"));
 
 export const meta: MetaFunction = () => {
   return baseMeta(
-    "Serotonin - Taking Web3 Brands to Market",
-    "Serotonin is the leading web3 marketing and product studio, helping dozens of the world's leading companies build the future of the internet."
+    "Serotonin - Bringing the World's Breakthrough Technologies to Market",
+    "Serotonin is a go-to-market platform for web3, AI, and biotech. You build the future, we do the strategy, recruiting, and legal work."
   );
 };
 

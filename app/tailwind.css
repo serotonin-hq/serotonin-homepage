@@ -12,6 +12,10 @@
   --text-color: #EEE;
 }
 
+* {
+  @apply overscroll-none;
+}
+
 html,
 body {
   @apply bg-[var(--bg-color)] text-[var(--text-color)] tracking-[-0.03em];

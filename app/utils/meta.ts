@@ -11,14 +11,14 @@ export const baseMeta = (title: string, description: string) => {
     {
       property: "og:image",
       content:
-        "https://serotonin-hq.github.io/serotonin-homepage/web-preview.png",
+        "https://serotonin.co/web-preview.png",
     },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
     {
       name: "twitter:image",
       content:
-        "https://serotonin-hq.github.io/serotonin-homepage/web-preview.png",
+        "https://serotonin.co/web-preview.png",
     },
     {
       name: "google-site-verification",

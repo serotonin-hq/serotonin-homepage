@@ -35,10 +35,7 @@ export const links: LinksFunction = () => {
     {
       rel: "icon",
       type: "image/x-icon",
-      href:
-        process.env.NODE_ENV === "production"
-          ? "/serotonin-homepage/favicon.ico"
-          : "/favicon.ico",
+      href: "/favicon.ico",
     },
   ];
 };

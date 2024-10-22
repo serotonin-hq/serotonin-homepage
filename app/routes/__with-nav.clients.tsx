@@ -319,10 +319,6 @@ const clients = [
       website: "https://quibic.com",
     },
     {
-      name: "Radiant",
-      website: "https://radiant.capital",
-    },
-    {
       name: "Ramp",
       website: "https://ramp.network",
     },

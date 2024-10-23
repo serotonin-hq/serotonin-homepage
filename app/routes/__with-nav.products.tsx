@@ -79,10 +79,11 @@ export default function Products() {
         >
           <ScrollText hoverable>Franklin</ScrollText>
         </Link>{" "}
-        is leading the web3 back office revolution, enabling projects to pay
-        their teams in crypto, stablecoins, or fiat currency, in compliance with
-        taxes and regulations. Blockchain payment rails make Franklin faster and
-        cheaper for payroll than traditional systems like ACH.
+        is hybrid crypto and fiat payroll platform. It enables businesses to
+        operate seamlessly using on and off chain technologies. By using
+        stablecoins, Franklin powers faster, cheaper, and more flexible payments
+        for the most important bill that any company has: payroll. The payroll
+        platform now includes bill pay and invoicing tools.
       </div>
     </SearchLight>
   );

@@ -315,8 +315,8 @@ const clients = [
       website: "https://www.quasar.fi",
     },
     {
-      name: "QUIBIC",
-      website: "https://quibic.com",
+      name: "QUBIC",
+      website: "https://qubic.org",
     },
     {
       name: "Ramp",

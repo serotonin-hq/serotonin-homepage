@@ -2,7 +2,7 @@ import { MetaFunction } from "@remix-run/react";
 import React from "react";
 import ScrollText from "~/components/scroll-text";
 import SearchLight from "~/components/search-light";
-import { baseMeta } from "~/utils/meta";
+import { baseMeta, canonical } from "~/utils/meta";
 
 export const meta: MetaFunction = () => {
   return baseMeta(
@@ -10,6 +10,8 @@ export const meta: MetaFunction = () => {
     "Serotonin’s world class team is made up of marketing and web3 experts committed to the future of the internet."
   );
 };
+
+export const links = canonical("/our-team");
 
 export default function Team() {
   return (

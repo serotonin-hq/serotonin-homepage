@@ -26,3 +26,12 @@ export const baseMeta = (title: string, description: string) => {
     },
   ];
 };
+
+export const canonical = (path: string) => () => {
+  return [
+    {
+      rel: "canonical",
+      href: "https://serotonin.co" + path
+    }
+  ]
+}

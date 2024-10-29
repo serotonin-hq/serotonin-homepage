@@ -1,7 +1,10 @@
+import { canonical } from "~/utils/meta";
+
+export const links = canonical("/platform-terms");
+
 export default function Terms() {
   return (
-    <div className="col-span-6 leading-7">
-      <h1 className="pb-7">TERMS OF SERVICE</h1>
+    <div>
       Last Revised on October 1st, 2023
       <br />
       <br />

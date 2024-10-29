@@ -1,7 +1,10 @@
+import { canonical } from "~/utils/meta";
+
+export const links = canonical("/platform-privacy");
+
 export default function Terms() {
   return (
-    <div className="col-span-6 leading-7">
-      <h1 className="pb-7">PRIVACY & COOKIES POLICY</h1>
+    <div>
       Last Revised on June 19th, 2024
       <br />
       <br />

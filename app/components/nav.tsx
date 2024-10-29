@@ -8,9 +8,9 @@ import SocialNav from "~/components/social-nav";
 import { darkModeAtom } from "~/root";
 import { cn } from "~/utils/cn";
 
-const baseClassName = "relative uppercase hover:pl-4 leading-7";
+export const baseClassName = "relative uppercase hover:pl-4 leading-7";
 
-const className: NavLinkProps["className"] = ({ isActive }) =>
+export const className: NavLinkProps["className"] = ({ isActive }) =>
   cn(
     baseClassName,
     isActive

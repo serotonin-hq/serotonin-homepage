@@ -3,6 +3,9 @@ import React from "react";
 import ScrollText from "~/components/scroll-text";
 import SearchLight from "~/components/search-light";
 import { cn } from "~/utils/cn";
+import { canonical } from "~/utils/meta";
+
+export const links = canonical("/clients");
 
 const clients = [
   [

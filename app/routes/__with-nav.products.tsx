@@ -2,7 +2,7 @@ import { Link, MetaFunction } from "@remix-run/react";
 import BlankArrow from "~/components/blank-arrow";
 import ScrollText from "~/components/scroll-text";
 import SearchLight from "~/components/search-light";
-import { baseMeta } from "~/utils/meta";
+import { baseMeta, canonical } from "~/utils/meta";
 
 export const meta: MetaFunction = () => {
   return baseMeta(
@@ -10,6 +10,8 @@ export const meta: MetaFunction = () => {
     "Serotonin’s web3 product studio builds and launches solutions targeting creators’, brands’, and companies’ greatest opportunities."
   );
 };
+
+export const links = canonical("/products");
 
 export default function Products() {
   return (

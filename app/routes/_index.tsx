@@ -1,4 +1,7 @@
 import ScrollText from "~/components/scroll-text";
+import { canonical } from "~/utils/meta";
+
+export const links = canonical("/");
 
 export default function Index() {
   return (

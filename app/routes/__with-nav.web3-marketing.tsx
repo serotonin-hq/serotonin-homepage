@@ -1,6 +1,6 @@
 import { MetaFunction } from "@remix-run/react";
 import ScrollText from "~/components/scroll-text";
-import { baseMeta } from "~/utils/meta";
+import { baseMeta, canonical } from "~/utils/meta";
 
 export const meta: MetaFunction = () => {
   return baseMeta(
@@ -8,6 +8,8 @@ export const meta: MetaFunction = () => {
     "Work with the leading web3 marketing agency to refine your message, engage your audience, and bring your product to market."
   );
 };
+
+export const links = canonical("/web3-marketing");
 
 export default function Marketing() {
   return (

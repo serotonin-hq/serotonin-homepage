@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 
-const MAX_STEPS = 4;
+const MAX_STEPS = 5;
 
 interface ScrollText extends React.HTMLProps<HTMLSpanElement> {
   hoverable?: boolean;
@@ -52,7 +52,7 @@ function shuffle(t: string) {
   for (let i = n - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     const tmp = a[i];
-    if (/\s+/.test(tmp)) continue;
+    if (/[^a-zA-Z0-9]+/.test(a[i] + a[j])) continue;
     a[i] = a[j];
     a[j] = tmp;
   }

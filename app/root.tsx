@@ -63,7 +63,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="[animation:fadein_1s]">
+      <body className="[animation:fadein_1s] min-h-screen">
         <Nav />
         {children}
         <ScrollRestoration />

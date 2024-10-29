@@ -34,7 +34,7 @@ export default function Nav() {
   return (
     <>
       <header className="flex items-start justify-between fixed md:left-auto left-8 right-8 top-8 z-10">
-        <NavLink className="md:hidden" to="/">
+        <NavLink className="md:hidden" to="/" aria-label="Home">
           <Logo
             onClick={toggleDark}
             className="animate-[spin_16s_linear_infinite] [animation-direction:reverse]"
@@ -66,7 +66,7 @@ export default function Nav() {
         </nav>
       </header>
       <div className="md:fixed inset-y-8 md:right-auto right-0 pl-8 flex flex-col">
-        <NavLink className="md:block hidden" to="/">
+        <NavLink className="md:block hidden" to="/" aria-label="Home">
           <Logo
             onClick={toggleDark}
             className="animate-[spin_16s_linear_infinite] [animation-direction:reverse]"

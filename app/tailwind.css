@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --bg-color: #EEE;
+  --bg-color: #eee;
   --text-color: #111;
 }
 
 .dark {
   --bg-color: #111;
-  --text-color: #EEE;
+  --text-color: #eee;
 }
 
 * {
@@ -23,7 +23,6 @@ body {
   font-weight: 400;
   color-scheme: light;
 }
-
 
 @font-face {
   font-family: "GT America Mono";
@@ -43,4 +42,13 @@ body {
     url("/fonts/GT-America/GT-America-Mono-Bold.woff") format("woff"),
     url("/fonts/GT-America/GT-America-Mono-Bold.ttf") format("truetype"),
     url("/fonts/GT-America/GT-America-Mono-Bold.otf") format("opentype");
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
 }

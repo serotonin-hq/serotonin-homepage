@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { MeshSurfaceSampler } from "three/addons/math/MeshSurfaceSampler.js";
 import { useEffect, useRef } from "react";
+import React from "react";
 
 const noise = `
   vec3 mod289(vec3 x) {
@@ -202,7 +203,7 @@ const fboVelocityFragmentShader = `
   }
 `;
 
-export default function Particles() {
+function Particles() {
   const canvas = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -426,7 +427,7 @@ export default function Particles() {
       preserveDrawingBuffer: true,
       canvas: canvas.current,
     });
-    
+
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x0000000);
@@ -573,3 +574,5 @@ export default function Particles() {
     />
   );
 }
+
+export default React.memo(Particles);

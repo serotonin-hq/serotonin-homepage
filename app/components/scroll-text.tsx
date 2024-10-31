@@ -1,3 +1,4 @@
+import React from "react";
 import { useCallback, useEffect, useRef } from "react";
 
 const MAX_STEPS = 5;
@@ -6,11 +7,7 @@ interface ScrollText extends React.HTMLProps<HTMLSpanElement> {
   hoverable?: boolean;
 }
 
-export default function ScrollText({
-  hoverable,
-  className,
-  ...props
-}: ScrollText) {
+function ScrollText({ hoverable, className, ...props }: ScrollText) {
   const ref = useRef<HTMLSpanElement>(null);
   const textContent = useRef<string>("");
 
@@ -59,3 +56,5 @@ function shuffle(t: string) {
 
   return a.join("");
 }
+
+export default React.memo(ScrollText);

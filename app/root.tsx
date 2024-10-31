@@ -7,15 +7,9 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
-import {
-  lazy,
-  Suspense,
-  useEffect,
-  useState,
-} from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 
 import "./tailwind.css";
-import Nav from "~/components/nav";
 import { cn } from "~/utils/cn";
 import { baseMeta } from "~/utils/meta";
 import { atomWithStorage } from "jotai/utils";
@@ -63,8 +57,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="[animation:fadein_1s] min-h-screen">
-        <Nav />
+      <body>
         {children}
         <ScrollRestoration />
         <Scripts />

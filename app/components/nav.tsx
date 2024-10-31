@@ -1,6 +1,7 @@
 import { NavLink, NavLinkProps, useLocation } from "@remix-run/react";
 import { useSetAtom } from "jotai";
-import { useCallback, useEffect, useState } from "react";
+import React from "react";
+import { useCallback } from "react";
 import BlankArrow from "~/components/blank-arrow";
 import Logo from "~/components/logo";
 import ScrollText from "~/components/scroll-text";
@@ -18,18 +19,13 @@ export const className: NavLinkProps["className"] = ({ isActive }) =>
       : ""
   );
 
-export default function Nav() {
+function Nav({ isFull }: { isFull?: boolean }) {
   const location = useLocation();
   const setDarkAtom = useSetAtom(darkModeAtom);
-  const [isFull, setIsFull] = useState(false);
-
-  useEffect(() => {
-    setIsFull(location.pathname !== "/");
-  }, [location.pathname]);
 
   const toggleDark = useCallback(() => {
-    setDarkAtom(d => !d);
-  }, [setDarkAtom])
+    setDarkAtom((d) => !d);
+  }, [setDarkAtom]);
 
   return (
     <>
@@ -132,3 +128,5 @@ export default function Nav() {
     </>
   );
 }
+
+export default React.memo(Nav);

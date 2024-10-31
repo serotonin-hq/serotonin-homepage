@@ -1,9 +1,7 @@
-import { useEffect } from "react";
+if (typeof window !== "undefined") {
+  window.location.href = new URL("/", window.location.href).toString();
+}
 
-export default function Index() {
-  useEffect(() => {
-    window.location.href = new URL("/", window.location.href).toString();
-  }, []);
-
+export default function Blank() {
   return <></>;
 }

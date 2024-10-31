@@ -1,5 +1,6 @@
 import { Link } from "@remix-run/react";
 import ScrollText from "~/components/scroll-text";
+import { cn } from "~/utils/cn";
 
 function XIcon(props: React.SVGAttributes<SVGSVGElement>) {
   return (
@@ -71,9 +72,12 @@ function FarcasterIcon(props: React.SVGAttributes<SVGSVGElement>) {
   );
 }
 
-export default function SocialNav(props: React.HTMLAttributes<HTMLDivElement>) {
+export default function SocialNav({
+  className,
+  ...rest
+}: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div {...props}>
+    <div {...rest} className={cn("sidenav", className)}>
       <div className="flex items-center gap-1">
         <Link
           to="https://twitter.com/serotonin_hq"

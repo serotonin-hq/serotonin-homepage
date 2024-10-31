@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { MeshSurfaceSampler } from "three/addons/math/MeshSurfaceSampler.js";
 import { useEffect, useRef } from "react";
 import React from "react";
+import { cn } from "~/utils/cn";
 
 const noise = `
   vec3 mod289(vec3 x) {
@@ -203,15 +204,26 @@ const fboVelocityFragmentShader = `
   }
 `;
 
-function Particles() {
+function Particles({
+  className,
+  height = "window",
+  width = "window",
+  ...props
+}: React.HTMLAttributes<HTMLCanvasElement> & {
+  width?: number | "window";
+  height?: number | "window";
+}) {
   const canvas = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     if (!canvas.current) return;
 
+    let renderWidth = width === "window" ? window.innerWidth : width;
+    let renderHeight = height === "window" ? window.innerHeight : height;
+
     const highlightColor = new THREE.Vector3(0, 0, 0);
     const scene = new THREE.Scene();
-    let aspect = window.innerWidth / window.innerHeight;
+    let aspect = renderWidth / renderHeight;
     const frustumSize = 2;
     const camera = new THREE.OrthographicCamera(
       (frustumSize * aspect) / -2,
@@ -429,7 +441,7 @@ function Particles() {
     });
 
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(renderWidth, renderHeight);
     renderer.setClearColor(0x0000000);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
@@ -461,8 +473,8 @@ function Particles() {
     }
 
     function onPointerMove(event: MouseEvent) {
-      pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
-      pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      pointer.x = (event.clientX / renderWidth) * 2 - 1;
+      pointer.y = -(event.clientY / renderHeight) * 2 + 1;
     }
     let pointerStartCountdown = 0;
 
@@ -546,11 +558,12 @@ function Particles() {
 
     function onWindowResize() {
       camera.updateProjectionMatrix();
-      camera.position.z =
-        window.innerWidth < 500 ? 76 : window.innerWidth < 980 ? 46 : 26;
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderWidth = width === "window" ? window.innerWidth : width;
+      renderHeight = height === "window" ? window.innerHeight : height;
+      camera.position.z = renderWidth < 500 ? 76 : renderWidth < 980 ? 46 : 26;
+      renderer.setSize(renderWidth, renderHeight);
 
-      aspect = window.innerWidth / window.innerHeight;
+      aspect = renderWidth / renderHeight;
       camera.left = (frustumSize * aspect) / -2;
       camera.right = (frustumSize * aspect) / 2;
       camera.top = frustumSize / 2;
@@ -565,12 +578,16 @@ function Particles() {
       window.removeEventListener("mouseup", onPointerUp);
       window.removeEventListener("resize", onWindowResize);
     };
-  }, []);
+  }, [height, width]);
 
   return (
     <canvas
       ref={canvas}
-      className="transition-opacity fixed inset-0 z-30 mix-blend-exclusion pointer-events-none"
+      className={cn(
+        "transition-opacity fixed inset-0 z-30 mix-blend-exclusion pointer-events-none",
+        className
+      )}
+      {...props}
     />
   );
 }

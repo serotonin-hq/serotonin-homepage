@@ -7,15 +7,12 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
-import { lazy, Suspense, useEffect, useState } from "react";
 
 import "./tailwind.css";
 import { cn } from "~/utils/cn";
 import { baseMeta } from "~/utils/meta";
 import { atomWithStorage } from "jotai/utils";
 import { useAtomValue } from "jotai";
-
-const Particles = lazy(() => import("~/components/particles"));
 
 export const meta: MetaFunction = () => {
   return baseMeta(
@@ -38,10 +35,6 @@ export const darkModeAtom = atomWithStorage("darkMode", true);
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const darkMode = useAtomValue(darkModeAtom);
-  const [isHydrated, setHydrated] = useState(false);
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
 
   return (
     <html
@@ -61,11 +54,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <Scripts />
-        {isHydrated && (
-          <Suspense>
-            <Particles />
-          </Suspense>
-        )}
       </body>
     </html>
   );

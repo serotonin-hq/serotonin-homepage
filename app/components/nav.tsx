@@ -1,7 +1,6 @@
 import { NavLink, NavLinkProps, useLocation } from "@remix-run/react";
 import { useSetAtom } from "jotai";
-import React from "react";
-import { useCallback } from "react";
+import React, { useCallback } from "react";
 import BlankArrow from "~/components/blank-arrow";
 import Logo from "~/components/logo";
 import ScrollText from "~/components/scroll-text";
@@ -19,7 +18,7 @@ export const className: NavLinkProps["className"] = ({ isActive }) =>
       : ""
   );
 
-function Nav({ isFull }: { isFull?: boolean }) {
+function Nav() {
   const location = useLocation();
   const setDarkAtom = useSetAtom(darkModeAtom);
 
@@ -61,69 +60,65 @@ function Nav({ isFull }: { isFull?: boolean }) {
           </ul>
         </nav>
       </header>
-      <div className="md:fixed inset-y-8 md:right-auto right-0 pl-8 flex flex-col">
+      <div className="md:fixed inset-y-8 md:right-auto right-0 pl-8 flex flex-col [&:has(~.no-sidenav)_.sidenav]:hidden">
         <NavLink className="md:block hidden" to="/" aria-label="Home">
           <Logo
             onClick={toggleDark}
             className="animate-[spin_16s_linear_infinite] [animation-direction:reverse]"
           />
         </NavLink>
-        {isFull && (
-          <>
-            <nav className="md:pt-20 md:block grid grid-cols-2 gap-2 pt-[144px] col-span-3 md:flex-grow">
-              <ul className="pb-7">
-                <li>
-                  <NavLink to="/web3-marketing" className={className}>
-                    <ScrollText hoverable>Marketing</ScrollText>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/strategy" className={className}>
-                    <ScrollText hoverable>Strategy</ScrollText>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/web3-recruiting" className={className}>
-                    <ScrollText hoverable>Recruiting</ScrollText>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/legal-services" className={className}>
-                    <ScrollText hoverable>Legal</ScrollText>
-                  </NavLink>
-                </li>
-              </ul>
-              <ul>
-                <li className="flex items-center gap-1">
-                  <NavLink
-                    target="__blank"
-                    to="https://platform.serotonin.co"
-                    className={cn("peer", baseClassName)}
-                  >
-                    <ScrollText hoverable>Platform</ScrollText>
-                  </NavLink>
-                  <BlankArrow className="shrink-0 md:opacity-0 peer-hover:opacity-100 transition-opacity" />
-                </li>
-                <li>
-                  <NavLink to="/products" className={className}>
-                    <ScrollText hoverable>Products</ScrollText>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/clients" className={className}>
-                    <ScrollText hoverable>Clients</ScrollText>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/our-team" className={className}>
-                    <ScrollText hoverable>Team</ScrollText>
-                  </NavLink>
-                </li>
-              </ul>
-            </nav>
-            <SocialNav />
-          </>
-        )}
+        <nav className="sidenav md:pt-20 md:block grid grid-cols-2 gap-2 pt-[144px] col-span-3 md:flex-grow">
+          <ul className="pb-7">
+            <li>
+              <NavLink to="/web3-marketing" className={className}>
+                <ScrollText hoverable>Marketing</ScrollText>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/strategy" className={className}>
+                <ScrollText hoverable>Strategy</ScrollText>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/web3-recruiting" className={className}>
+                <ScrollText hoverable>Recruiting</ScrollText>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/legal-services" className={className}>
+                <ScrollText hoverable>Legal</ScrollText>
+              </NavLink>
+            </li>
+          </ul>
+          <ul>
+            <li className="flex items-center gap-1">
+              <NavLink
+                target="__blank"
+                to="https://platform.serotonin.co"
+                className={cn("peer", baseClassName)}
+              >
+                <ScrollText hoverable>Platform</ScrollText>
+              </NavLink>
+              <BlankArrow className="shrink-0 md:opacity-0 peer-hover:opacity-100 transition-opacity" />
+            </li>
+            <li>
+              <NavLink to="/products" className={className}>
+                <ScrollText hoverable>Products</ScrollText>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/clients" className={className}>
+                <ScrollText hoverable>Clients</ScrollText>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/our-team" className={className}>
+                <ScrollText hoverable>Team</ScrollText>
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+        <SocialNav />
       </div>
     </>
   );

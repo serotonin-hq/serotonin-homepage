@@ -587,6 +587,8 @@ function Particles({
         "transition-opacity fixed inset-0 z-30 mix-blend-exclusion pointer-events-none",
         className
       )}
+      height={height === "window" ? undefined : height}
+      width={width === "window" ? undefined : width}
       {...props}
     />
   );

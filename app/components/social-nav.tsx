@@ -2,7 +2,7 @@ import { Link } from "@remix-run/react";
 import ScrollText from "~/components/scroll-text";
 import { cn } from "~/utils/cn";
 
-function XIcon(props: React.SVGAttributes<SVGSVGElement>) {
+export function XIcon(props: React.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       width="16"
@@ -20,7 +20,7 @@ function XIcon(props: React.SVGAttributes<SVGSVGElement>) {
   );
 }
 
-function LinkedInIcon(props: React.SVGAttributes<SVGSVGElement>) {
+export function LinkedInIcon(props: React.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       width="16"
@@ -46,7 +46,7 @@ function LinkedInIcon(props: React.SVGAttributes<SVGSVGElement>) {
   );
 }
 
-function FarcasterIcon(props: React.SVGAttributes<SVGSVGElement>) {
+export function FarcasterIcon(props: React.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       width="16"
@@ -80,6 +80,7 @@ export default function SocialNav({
     <div {...rest} className={cn("sidenav", className)}>
       <div className="flex items-center gap-1">
         <Link
+          target="__blank"
           to="https://twitter.com/serotonin_hq"
           className="w-8 h-8 flex items-center justify-center border dark:border-[#2a2a2a] dark:bg-[#111] rounded-full group"
         >
@@ -87,6 +88,7 @@ export default function SocialNav({
           <span className="hidden group-hover:block">X</span>
         </Link>
         <Link
+          target="__blank"
           to="https://www.linkedin.com/company/serotoninco"
           className="w-8 h-8 flex items-center justify-center border dark:border-[#2a2a2a] dark:bg-[#111] rounded-full group"
         >
@@ -94,6 +96,7 @@ export default function SocialNav({
           <span className="hidden group-hover:block">IN</span>
         </Link>
         <Link
+          target="__blank"
           to="https://warpcast.com/serotonin-hq"
           className="w-8 h-8 flex items-center justify-center border dark:border-[#2a2a2a] dark:bg-[#111] rounded-full group"
         >

@@ -619,7 +619,7 @@ function Hero({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
     <div
       ref={scene}
       className={cn(
-        "relative h-[940px] sm:h-[888px] [perspective:300px] rotate-[-4deg]",
+        "relative h-[940px] sm:h-[888px] sm:[perspective:300px] rotate-[-4deg]",
         className
       )}
       {...rest}

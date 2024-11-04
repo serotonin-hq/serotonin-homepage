@@ -703,15 +703,28 @@ const FaceCarousel = () => {
                 ))}
               </div>
               {faces.map(({ avatar }, i) => (
-                <img
-                  src={avatar}
-                  alt="avatar"
-                  key={avatar}
-                  width={96}
-                  height={96}
-                  className={`block w-24 h-24 rounded-full shrink-0 transition-all duration-300
-                    ${activeIndex === i ? "ring-4 ring-purple-500" : "ring-0"}`}
-                />
+                <div key={avatar} className="relative w-24 h-24 shrink-0">
+                  <img
+                    src={avatar}
+                    alt="avatar"
+                    key={avatar}
+                    width={96}
+                    height={96}
+                    className={`block w-24 h-24 rounded-full transition-all duration-300
+                    ${
+                      activeIndex === i
+                        ? "ring-4 ring-[#C084FC] face-starred"
+                        : "ring-0"
+                    }`}
+                  />
+                  {activeIndex === i && (
+                    <img
+                      src="/images/badge.png"
+                      alt="member star"
+                      className="absolute right-0.5 bottom-0.5 w-6 h-6"
+                    />
+                  )}
+                </div>
               ))}
               {faces.slice(0, 3).map(({ avatar }) => (
                 <img

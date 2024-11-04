@@ -393,7 +393,10 @@ export default function Platform() {
               Compare plans
             </Link>
           </div>
-          <div className="grid grid-rows-[auto,auto] gap-4 pb-6 mb-24 md:grid-cols-[1fr,1fr] md:grid-rows-1 md:mb-8">
+          <div
+            id="compare-plans"
+            className="grid grid-rows-[auto,auto] gap-4 pb-6 mb-24 md:grid-cols-[1fr,1fr] md:grid-rows-1 md:mb-8"
+          >
             <div className="bg-[#111] border border-[#222] rounded-xl p-4">
               <div className="flex items-center gap-4 mb-6">
                 <img
@@ -470,10 +473,7 @@ export default function Platform() {
               </div>
             </div>
           </div>
-          <table
-            id="compare-plans"
-            className="text-xs font-medium hidden md:block px-4 mb-24"
-          >
+          <table className="text-xs font-medium hidden md:block px-4 mb-24">
             <thead>
               <tr className="uppercase">
                 <th className="font-medium p-4 text-left text-[#808080]">

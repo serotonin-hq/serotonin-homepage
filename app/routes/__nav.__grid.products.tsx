@@ -84,8 +84,7 @@ export default function Products() {
         is hybrid crypto and fiat payroll platform. It enables businesses to
         operate seamlessly using on and off chain technologies. By using
         stablecoins, Franklin powers faster, cheaper, and more flexible payments
-        for the most important bill that any company has: payroll. The payroll
-        platform now includes bill pay and invoicing tools.
+        for the most important bill that any company has: payroll.
       </div>
     </SearchLight>
   );

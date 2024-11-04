@@ -41,7 +41,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       lang="en"
       className={cn(
         darkMode && "dark",
-        "antialiased select-none transition-[filter] duration-500"
+        "antialiased transition-[filter] duration-500"
       )}
     >
       <head>

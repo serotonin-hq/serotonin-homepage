@@ -14,20 +14,65 @@
     color-scheme: dark;
   }
 
+  body:has(#platform) {
+    --bg-color: #000;
+  }
+
+  html {
+    @apply select-none;
+  }
+
+  html:has(#platform) {
+    @apply select-text;
+  }
+
+  ::selection {
+    @apply bg-lime-400/80 text-[var(--bg-color)];
+  }
+
   * {
     @apply overscroll-none;
   }
 
-  button {
-    @apply flex items-center px-4 py-2 border-2 rounded-lg bg-[var(--text-color)] text-[var(--bg-color)] border-[var(--bg-color)] tracking-[-0.03em] leading-6 font-medium text-base;
+  button,
+  .btn {
+    @apply flex items-center px-4 py-1.5 border-2 rounded-lg bg-[var(--text-color)] text-[var(--bg-color)] border-[var(--bg-color)] tracking-[-0.03em] leading-6 font-medium text-base transition-colors duration-200;
   }
 
-  button.secondary {
+  button:hover,
+  button:focus-visible,
+  .btn:hover,
+  .btn:focus-visible {
+    @apply bg-neutral-300;
+  }
+
+  button.secondary,
+  .btn.secondary {
     @apply border-[#222] text-[var(--text-color)] bg-[var(--bg-color)];
   }
 
-  button.small {
+  button.secondary:hover,
+  button.secondary:focus-visible,
+  .btn.secondary:hover,
+  .btn.secondary:focus-visible {
+    @apply border-[#2a2a2a] bg-[#1a1a1a];
+  }
+
+  button.small,
+  .btn.small {
     @apply px-3 py-1 leading-5 text-sm;
+  }
+
+  .gt-america {
+    font-family: "GT America", sans-serif;
+    font-weight: 400;
+    color-scheme: dark;
+  }
+
+  .gt-america-mono {
+    font-family: "GT America Mono", monospace;
+    font-weight: 400;
+    color-scheme: dark;
   }
 
   html,
@@ -60,6 +105,59 @@
       url("/fonts/GT-America/GT-America-Mono-Bold.otf") format("opentype");
   }
 
+  @font-face {
+    font-family: "GT America";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/GT-America/GT-America-Standard-Regular.woff2")
+        format("woff2"),
+      url("/fonts/GT-America/GT-America-Standard-Regular.woff") format("woff"),
+      url("/fonts/GT-America/GT-America-Standard-Regular.ttf")
+        format("truetype"),
+      url("/fonts/GT-America/GT-America-Standard-Regular.otf")
+        format("opentype");
+  }
+
+  @font-face {
+    font-family: "GT America";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/fonts/GT-America/GT-America-Standard-Bold.woff2") format("woff2"),
+      url("/fonts/GT-America/GT-America-Standard-Bold.woff") format("woff"),
+      url("/fonts/GT-America/GT-America-Standard-Bold.ttf") format("truetype"),
+      url("/fonts/GT-America/GT-America-Standard-Bold.otf") format("opentype");
+  }
+
+  @font-face {
+    font-family: "GT America";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("/fonts/GT-America/GT-America-Standard-Medium.woff2")
+        format("woff2"),
+      url("/fonts/GT-America/GT-America-Standard-Medium.woff") format("woff"),
+      url("/fonts/GT-America/GT-America-Standard-Medium.ttf") format("truetype"),
+      url("/fonts/GT-America/GT-America-Standard-Medium.otf") format("opentype");
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(-6px) rotate(var(--tw-rotate));
+    }
+    50% {
+      transform: translateY(6px) rotate(var(--tw-rotate));
+    }
+    100% {
+      transform: translateY(-6px) rotate(var(--tw-rotate));
+    }
+  }
+
   @keyframes fadein {
     0% {
       opacity: 0;
@@ -71,7 +169,7 @@
 
   @keyframes carousel {
     0% {
-      margin-left: 0;
+      margin-left: 0px;
     }
     100% {
       margin-left: -100%;

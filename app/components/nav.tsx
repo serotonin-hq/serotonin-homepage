@@ -94,7 +94,7 @@ function Nav() {
             <li className="flex items-center gap-1">
               <NavLink
                 target="__blank"
-                to="https://platform.serotonin.co"
+                to="/platform"
                 className={cn("peer", baseClassName)}
               >
                 <ScrollText hoverable>Platform</ScrollText>

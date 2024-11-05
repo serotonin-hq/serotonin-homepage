@@ -717,13 +717,14 @@ const FaceCarousel = () => {
                         : "ring-0"
                     }`}
                   />
-                  {activeIndex === i && (
-                    <img
-                      src="/images/badge.png"
-                      alt="member star"
-                      className="absolute right-0.5 bottom-0.5 w-6 h-6"
-                    />
-                  )}
+                  <img
+                    src="/images/badge.png"
+                    alt="member star"
+                    className={cn(
+                      "absolute right-0.5 bottom-0.5 w-6 h-6 hidden",
+                      activeIndex === i && "inline-block"
+                    )}
+                  />
                 </div>
               ))}
               {faces.slice(0, 3).map(({ avatar }) => (
@@ -739,7 +740,7 @@ const FaceCarousel = () => {
             </div>
           </div>
         </div>
-        <div className="p-4" key={activeIndex}>
+        <div className="p-4">
           <p className="font-bold text-[13px] leading-5">
             {faces[activeIndex].name}
           </p>

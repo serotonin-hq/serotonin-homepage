@@ -1,7 +1,6 @@
 import * as THREE from "three";
 import { MeshSurfaceSampler } from "three/addons/math/MeshSurfaceSampler.js";
-import { useEffect, useRef } from "react";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { cn } from "~/utils/cn";
 
 const noise = `

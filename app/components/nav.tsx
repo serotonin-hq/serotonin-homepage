@@ -92,11 +92,7 @@ function Nav() {
           </ul>
           <ul>
             <li className="flex items-center gap-1">
-              <NavLink
-                target="__blank"
-                to="/platform"
-                className={cn("peer", baseClassName)}
-              >
+              <NavLink to="/platform" className={className}>
                 <ScrollText hoverable>Platform</ScrollText>
               </NavLink>
               <BlankArrow className="shrink-0 md:opacity-0 peer-hover:opacity-100 transition-opacity" />

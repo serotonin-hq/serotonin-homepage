@@ -1,15 +1,16 @@
 import { Link, NavLink } from "@remix-run/react";
 import { useSetAtom } from "jotai";
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import Check from "~/components/check";
 import CheckMini from "~/components/check-mini";
 import LinkArrow from "~/components/link-arrow";
 import Logo from "~/components/logo";
-import Particles from "~/components/particles";
 import { FarcasterIcon, LinkedInIcon, XIcon } from "~/components/social-nav";
 import { darkModeAtom } from "~/root";
 import { cn } from "~/utils/cn";
 import { baseMeta, canonical } from "~/utils/meta";
+
+const Particles = lazy(() => import("~/components/particles"));
 
 export const meta = baseMeta(
   "Serotonin - Platform",
@@ -248,11 +249,14 @@ function checkMobile() {
 export default function Platform() {
   const setDarkAtom = useSetAtom(darkModeAtom);
   const [isMobile, setIsMobile] = useState(checkMobile());
+  const [isHydrated, setHydrated] = useState(false);
+
   useEffect(() => {
     setDarkAtom(true);
   }, [setDarkAtom]);
 
   useEffect(() => {
+    setHydrated(true);
     function handleResize() {
       setIsMobile(checkMobile());
     }
@@ -263,11 +267,15 @@ export default function Platform() {
 
   return (
     <>
-      <Particles
-        className="absolute top-0 inset-x-0 shadow-inner [mask-image:linear-gradient(to_top,transparent_60%,black)] mix-blend-lighten"
-        height={isMobile ? 256 : 556}
-        width="window"
-      />
+      {isHydrated && (
+        <Suspense>
+          <Particles
+            className="absolute top-0 inset-x-0 shadow-inner [mask-image:linear-gradient(to_top,transparent_60%,black)] mix-blend-lighten"
+            height={isMobile ? 256 : 556}
+            width="window"
+          />
+        </Suspense>
+      )}
       <main id="platform" className="max-w-[1158px] mx-auto gt-america">
         <nav className="flex items-center justify-between p-6 mb-9">
           <NavLink to="/" aria-label="Home">
@@ -574,7 +582,10 @@ function Hero({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
   const scene = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const img = scene.current?.querySelectorAll<HTMLElement>(".hero-item");
+    if (!scene.current) return;
+    const img = [
+      ...scene.current.querySelectorAll<HTMLElement>(".hero-item").entries(),
+    ];
 
     let nextX = 0;
     let nextY = 0;
@@ -592,11 +603,11 @@ function Hero({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
       const wp = x / window.innerWidth - 0.5;
       const hp = -1 * (y / window.innerHeight - 0.5);
 
-      img?.forEach((i, index) => {
+      for (const [index, i] of img) {
         i.style.transform = `rotateY(${wp * 4}deg) rotateX(${
           hp * 8
         }deg) translateZ(${-index * 2}px)`;
-      });
+      }
 
       animationFrame = requestAnimationFrame(animate);
     }
@@ -619,7 +630,7 @@ function Hero({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
     <div
       ref={scene}
       className={cn(
-        "relative h-[940px] sm:h-[888px] sm:[perspective:300px] rotate-[-4deg]",
+        "relative h-[940px] pointer-events-none sm:h-[888px] sm:[perspective:300px] rotate-[-4deg]",
         className
       )}
       {...rest}
@@ -673,7 +684,7 @@ const FaceCarousel = () => {
   }, [totalCircles]);
 
   return (
-    <div className="hero-item absolute w-[400px] h-[268px] sm:top-[516px] sm:left-[-52px] top-0 left-[19px] bg-[#111111] rounded-xl bg-opacity-80 backdrop-blur-md border border-[#222] flex gap-6 flex-col">
+    <div className="hero-item absolute w-[400px] h-[268px] pointer-events-none sm:top-[516px] sm:left-[-52px] top-0 left-[19px] bg-[#111111] rounded-xl bg-opacity-80 backdrop-blur-md border border-[#222] flex gap-6 flex-col">
       <div className="px-4 py-3 border-b border-b-[#222]">
         <h4 className="text-base font-bold">Join Serotonin</h4>
         <p className="text-[13px] leading-5 tracking-[-0.03em] font-medium text-[#808080]">

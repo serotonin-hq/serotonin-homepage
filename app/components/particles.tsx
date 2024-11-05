@@ -593,4 +593,4 @@ function Particles({
   );
 }
 
-export default React.memo(Particles);
+export default Particles;

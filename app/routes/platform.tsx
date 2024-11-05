@@ -1,16 +1,15 @@
 import { Link, NavLink } from "@remix-run/react";
 import { useSetAtom } from "jotai";
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Check from "~/components/check";
 import CheckMini from "~/components/check-mini";
 import LinkArrow from "~/components/link-arrow";
 import Logo from "~/components/logo";
+import Particles from "~/components/particles";
 import { FarcasterIcon, LinkedInIcon, XIcon } from "~/components/social-nav";
 import { darkModeAtom } from "~/root";
 import { cn } from "~/utils/cn";
 import { baseMeta, canonical } from "~/utils/meta";
-
-const Particles = lazy(() => import("~/components/particles"));
 
 export const meta = baseMeta(
   "Serotonin - Platform",
@@ -268,13 +267,11 @@ export default function Platform() {
   return (
     <>
       {isHydrated && (
-        <Suspense>
-          <Particles
-            className="absolute top-0 inset-x-0 shadow-inner [mask-image:linear-gradient(to_top,transparent_60%,black)] mix-blend-lighten"
-            height={isMobile ? 256 : 556}
-            width="window"
-          />
-        </Suspense>
+        <Particles
+          className="absolute top-0 inset-x-0 shadow-inner [mask-image:linear-gradient(to_top,transparent_60%,black)] mix-blend-lighten"
+          height={isMobile ? 256 : 556}
+          width="window"
+        />
       )}
       <main id="platform" className="max-w-[1158px] mx-auto gt-america">
         <nav className="flex items-center justify-between p-6 mb-9">

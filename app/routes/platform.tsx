@@ -1,4 +1,5 @@
 import { Link, NavLink } from "@remix-run/react";
+import { gsap } from "gsap";
 import { useSetAtom } from "jotai";
 import { useEffect, useRef, useState } from "react";
 import Check from "~/components/check";
@@ -589,7 +590,6 @@ function Hero({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
     let x = 0;
     let y = 0;
 
-    let animationFrame: number;
     function animate() {
       const dx = nextX - x;
       const dy = nextY - y;
@@ -605,11 +605,9 @@ function Hero({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
           hp * 8
         }deg) translateZ(${-index * 2}px)`;
       }
-
-      animationFrame = requestAnimationFrame(animate);
     }
 
-    animationFrame = requestAnimationFrame(animate);
+    gsap.ticker.add(animate);
 
     function handleMouse(e: MouseEvent) {
       nextX = e.clientX;
@@ -618,7 +616,7 @@ function Hero({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
 
     window.addEventListener("mousemove", handleMouse);
     return () => {
-      if (animationFrame) cancelAnimationFrame(animationFrame);
+      gsap.ticker.remove(animate);
       window.removeEventListener("mousemove", handleMouse);
     };
   }, []);

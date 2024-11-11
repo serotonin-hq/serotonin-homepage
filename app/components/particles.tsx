@@ -1,7 +1,9 @@
 import * as THREE from "three";
 import { MeshSurfaceSampler } from "three/addons/math/MeshSurfaceSampler.js";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { cn } from "~/utils/cn";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
 
 const noise = `
   vec3 mod289(vec3 x) {
@@ -214,7 +216,7 @@ function Particles({
 }) {
   const canvas = useRef<HTMLCanvasElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (!canvas.current) return;
 
     let renderWidth = width === "window" ? window.innerWidth : width;
@@ -479,17 +481,13 @@ function Particles({
 
     // clock
     const clock = new THREE.Clock();
-    let animationFrame: number;
-
     function render() {
       const delta = 0.003;
       const time = clock.getElapsedTime();
 
       // fbo
-      if (!fboMesh.material.uniforms.uPositionsTexture.value)
-        return requestAnimationFrame(render);
-      if (!fboMesh.material.uniforms.uVelocitiesTexture.value)
-        return requestAnimationFrame(render);
+      if (!fboMesh.material.uniforms.uPositionsTexture.value) return;
+      if (!fboMesh.material.uniforms.uVelocitiesTexture.value) return;
       const temp = fboVelocityRenderTarget1;
       fboVelocityRenderTarget1 = fboVelocityRenderTarget2;
       fboVelocityRenderTarget2 = temp;
@@ -543,12 +541,7 @@ function Particles({
       }
 
       renderer.render(scene, camera);
-      setTimeout(() => {
-        animationFrame = requestAnimationFrame(render);
-      }, 30 / 1000);
     }
-
-    animationFrame = requestAnimationFrame(render);
 
     window.addEventListener("mousemove", onPointerMove);
     window.addEventListener("mousedown", onPointerDown);
@@ -570,8 +563,10 @@ function Particles({
       camera.updateProjectionMatrix();
     }
 
+    gsap.ticker.add(render);
+
     return () => {
-      cancelAnimationFrame(animationFrame);
+      gsap.ticker.remove(render);
       window.removeEventListener("mousemove", onPointerMove);
       window.removeEventListener("mousedown", onPointerDown);
       window.removeEventListener("mouseup", onPointerUp);

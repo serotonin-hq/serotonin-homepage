@@ -18,7 +18,6 @@ export const meta = baseMeta(
 );
 
 export const links = canonical("/platform");
-
 const logos = [
   {
     url: "/images/logos/9dcc.png",
@@ -249,31 +248,29 @@ function checkMobile() {
 export default function Platform() {
   const setDarkAtom = useSetAtom(darkModeAtom);
   const [isMobile, setIsMobile] = useState(checkMobile());
-  const [isHydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     setDarkAtom(true);
   }, [setDarkAtom]);
 
   useEffect(() => {
-    setHydrated(true);
     function handleResize() {
       setIsMobile(checkMobile());
     }
 
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
     <>
-      {isHydrated && (
-        <Particles
-          className="absolute top-0 inset-x-0 shadow-inner [mask-image:linear-gradient(to_top,transparent_60%,black)] mix-blend-lighten"
-          height={isMobile ? 256 : 556}
-          width="window"
-        />
-      )}
+      <Particles
+        className="absolute transform-gpu top-0 inset-x-0 shadow-inner [mask-image:linear-gradient(to_top,transparent_60%,black)] mix-blend-lighten"
+        height={isMobile ? 256 : 556}
+        width="window"
+      />
       <main id="platform" className="max-w-[1158px] mx-auto gt-america">
         <nav className="flex items-center justify-between p-6 mb-9">
           <NavLink to="/" aria-label="Home">
@@ -286,17 +283,17 @@ export default function Platform() {
         <section className="relative">
           <div className="absolute inset-0 [background-image:linear-gradient(to_right,var(--bg-color),transparent,var(--bg-color))] opacity-[0.24] pointer-events-none max-w-[1014px] mx-auto" />
           <header className="px-6 flex flex-col justify-center items-center gap-4 mb-12 md:mb-[72px]">
-            <h1 className="font-normal text-[32px] leading-[40px] tracking-[-0.08em] uppercase text-center text-[#F1F1F1] gt-america-mono md:text-[72px] md:leading-[72px] lg:text-[96px] lg:leading-[96px] lg:tracking-[-0.1em]">
+            <h1 className="animate-fadein font-normal text-[32px] leading-[40px] tracking-[-0.08em] uppercase text-center text-[#F1F1F1] gt-america-mono md:text-[72px] md:leading-[72px] lg:text-[96px] lg:leading-[96px] lg:tracking-[-0.1em]">
               The best events <br /> calendar in web3
             </h1>
-            <p className="font-normal text-sm tracking-[-0.02em] text-center text-[#E0E0E0] mb-2 max-w-[345px] md:max-w-none md:text-[18px] md:leading-7">
+            <p className="animate-fadein [animation-delay:500ms] font-normal text-sm tracking-[-0.02em] text-center text-[#E0E0E0] mb-2 max-w-[345px] md:max-w-none md:text-[18px] md:leading-7">
               One calendar for every conference, hackathon, summit and side
               event in web3.
               <br className="hidden md:inline" /> Link your social accounts to
               see where your network will be.
             </p>
             <Link
-              className="btn secondary"
+              className="btn secondary animate-fadein [animation-delay:500ms]"
               to="https://platform.serotonin.co/login"
             >
               Create Account
@@ -610,8 +607,8 @@ function Hero({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
       const dx = nextX - x;
       const dy = nextY - y;
 
-      x = x + dx * 0.05;
-      y = y + dy * 0.05;
+      x = x + dx * 0.025;
+      y = y + dy * 0.025;
 
       const wp = x / window.innerWidth - 0.5;
       const hp = -1 * (y / window.innerHeight - 0.5);
@@ -641,7 +638,7 @@ function Hero({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
     <div
       ref={scene}
       className={cn(
-        "relative h-[940px] pointer-events-none sm:h-[888px] sm:[perspective:300px] rotate-[-4deg]",
+        "animate-hero relative h-[940px] pointer-events-none sm:h-[888px] motion-safe:sm:[perspective:300px] rotate-[-4deg]",
         className
       )}
       {...rest}
@@ -800,7 +797,10 @@ function CarouselRow({
   ...rest
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className="flex-shrink-0" {...rest}>
+    <div
+      className="transform-gpu animate-fadein [animation-delay:750ms] flex-shrink-0"
+      {...rest}
+    >
       <div className="carousel-row flex items-center [animation:carousel_120s_infinite_linear] pr-12">
         {children}
       </div>

@@ -28,6 +28,44 @@ export const links: LinksFunction = () => {
       type: "image/x-icon",
       href: "/favicon.ico",
     },
+    // GT America Mono
+    {
+      rel: "preload",
+      href: "/fonts/GT-America/GT-America-Mono-Regular.woff2",
+      as: "font",
+      type: "font/woff2",
+      crossOrigin: "anonymous",
+    },
+    {
+      rel: "preload",
+      href: "/fonts/GT-America/GT-America-Mono-Bold.woff2",
+      as: "font",
+      type: "font/woff2",
+      crossOrigin: "anonymous",
+    },
+
+    // GT America Standard
+    {
+      rel: "preload",
+      href: "/fonts/GT-America/GT-America-Standard-Regular.woff2",
+      as: "font",
+      type: "font/woff2",
+      crossOrigin: "anonymous",
+    },
+    {
+      rel: "preload",
+      href: "/fonts/GT-America/GT-America-Standard-Bold.woff2",
+      as: "font",
+      type: "font/woff2",
+      crossOrigin: "anonymous",
+    },
+    {
+      rel: "preload",
+      href: "/fonts/GT-America/GT-America-Standard-Medium.woff2",
+      as: "font",
+      type: "font/woff2",
+      crossOrigin: "anonymous",
+    },
   ];
 };
 

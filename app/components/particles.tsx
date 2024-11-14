@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { MeshSurfaceSampler } from "three/addons/math/MeshSurfaceSampler.js";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { cn } from "~/utils/cn";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
@@ -214,11 +214,17 @@ function Particles({
   width?: number | "window";
   height?: number | "window";
 }) {
+  const [isHydrated, setIsHydrated] = useState(false);
   const canvas = useRef<HTMLCanvasElement>(null);
 
-  useGSAP(() => {
-    if (!canvas.current) return;
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
+  useGSAP(() => {
+    if (!canvas.current || !isHydrated) return;
+
+    // many thanks to https://github.com/poeti8/one-million-particles
     let renderWidth = width === "window" ? window.innerWidth : width;
     let renderHeight = height === "window" ? window.innerHeight : height;
 
@@ -343,7 +349,14 @@ function Particles({
     let fboVelocityRenderTarget1 = fboPositionRenderTarget1.clone();
     let fboVelocityRenderTarget2 = fboPositionRenderTarget1.clone();
 
-    function setTextGeometry() {
+    const renderTargets = {
+      fboPositionRenderTarget1,
+      fboPositionRenderTarget2,
+      fboVelocityRenderTarget1,
+      fboVelocityRenderTarget2,
+    };
+
+    function setPlaneGeometry() {
       text.geometry = new THREE.SphereGeometry(1.25, 16, 8);
       text.geometry.computeBoundingBox();
       const textWidth =
@@ -429,14 +442,14 @@ function Particles({
       text.geometry.boundingSphere!.radius = 1000;
     }
 
-    setTextGeometry();
+    setPlaneGeometry();
     scene.add(text);
 
     const renderer = new THREE.WebGLRenderer({
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
       powerPerformance: "high-performance",
-      failIfMajorPerformanceCaveat: true,
+      failIfMajorPerformanceCaveat: false,
       preserveDrawingBuffer: true,
       canvas: canvas.current,
     });
@@ -554,7 +567,6 @@ function Particles({
       renderHeight = height === "window" ? window.innerHeight : height;
       camera.position.z = renderWidth < 500 ? 76 : renderWidth < 980 ? 46 : 26;
       renderer.setSize(renderWidth, renderHeight);
-
       aspect = renderWidth / renderHeight;
       camera.left = (frustumSize * aspect) / -2;
       camera.right = (frustumSize * aspect) / 2;
@@ -567,18 +579,83 @@ function Particles({
 
     return () => {
       gsap.ticker.remove(render);
+
+      Object.values(renderTargets).forEach((target) => {
+        target.dispose();
+      });
+
+      if (text.geometry) {
+        text.geometry.dispose();
+      }
+      if (text.material) {
+        if (Array.isArray(text.material)) {
+          text.material.forEach((m) => m.dispose());
+        } else {
+          text.material.dispose();
+        }
+      }
+
+      if (fboMesh.geometry) {
+        fboMesh.geometry.dispose();
+      }
+      if (fboMesh.material) {
+        const material = fboMesh.material as THREE.ShaderMaterial;
+
+        Object.values(material.uniforms).forEach((uniform) => {
+          if (uniform.value && uniform.value.isTexture) {
+            uniform.value.dispose();
+          }
+        });
+
+        material.dispose();
+      }
+
+      scene.traverse((object) => {
+        if (object instanceof THREE.Mesh || object instanceof THREE.Points) {
+          if (object.geometry) {
+            object.geometry.dispose();
+          }
+          if (object.material) {
+            if (Array.isArray(object.material)) {
+              object.material.forEach((m) => m.dispose());
+            } else {
+              object.material.dispose();
+            }
+          }
+        }
+      });
+
+      fboScene.traverse((object) => {
+        if (object instanceof THREE.Mesh) {
+          if (object.geometry) {
+            object.geometry.dispose();
+          }
+          if (object.material) {
+            if (Array.isArray(object.material)) {
+              object.material.forEach((m) => m.dispose());
+            } else {
+              object.material.dispose();
+            }
+          }
+        }
+      });
+
+      scene.clear();
+      fboScene.clear();
+      renderer.dispose();
+
       window.removeEventListener("mousemove", onPointerMove);
       window.removeEventListener("mousedown", onPointerDown);
       window.removeEventListener("mouseup", onPointerUp);
       window.removeEventListener("resize", onWindowResize);
     };
-  }, [height, width]);
+  }, [height, width, isHydrated]);
 
   return (
     <canvas
       ref={canvas}
       className={cn(
-        "transition-opacity fixed inset-0 z-30 mix-blend-exclusion pointer-events-none",
+        "transform-gpu motion-reduce:hidden transition-opacity fixed inset-0 z-30 mix-blend-exclusion pointer-events-none",
         className
       )}
       height={height === "window" ? undefined : height}

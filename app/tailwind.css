@@ -84,10 +84,10 @@
   }
 
   @font-face {
+    font-display: swap;
     font-family: "GT America Mono";
     font-style: normal;
     font-weight: 400;
-    font-display: swap;
     src: url("/fonts/GT-America/GT-America-Mono-Regular.woff2") format("woff2"),
       url("/fonts/GT-America/GT-America-Mono-Regular.woff") format("woff"),
       url("/fonts/GT-America/GT-America-Mono-Regular.ttf") format("truetype"),
@@ -95,10 +95,10 @@
   }
 
   @font-face {
+    font-display: swap;
     font-family: "GT America Mono";
     font-style: normal;
     font-weight: 700;
-    font-display: swap;
     src: url("/fonts/GT-America/GT-America-Mono-Bold.woff2") format("woff2"),
       url("/fonts/GT-America/GT-America-Mono-Bold.woff") format("woff"),
       url("/fonts/GT-America/GT-America-Mono-Bold.ttf") format("truetype"),
@@ -106,10 +106,10 @@
   }
 
   @font-face {
+    font-display: swap;
     font-family: "GT America";
     font-style: normal;
     font-weight: 400;
-    font-display: swap;
     src: url("/fonts/GT-America/GT-America-Standard-Regular.woff2")
         format("woff2"),
       url("/fonts/GT-America/GT-America-Standard-Regular.woff") format("woff"),
@@ -120,10 +120,10 @@
   }
 
   @font-face {
+    font-display: swap;
     font-family: "GT America";
     font-style: normal;
     font-weight: 700;
-    font-display: swap;
     src: url("/fonts/GT-America/GT-America-Standard-Bold.woff2") format("woff2"),
       url("/fonts/GT-America/GT-America-Standard-Bold.woff") format("woff"),
       url("/fonts/GT-America/GT-America-Standard-Bold.ttf") format("truetype"),
@@ -131,10 +131,10 @@
   }
 
   @font-face {
+    font-display: swap;
     font-family: "GT America";
     font-style: normal;
     font-weight: 500;
-    font-display: swap;
     src: url("/fonts/GT-America/GT-America-Standard-Medium.woff2")
         format("woff2"),
       url("/fonts/GT-America/GT-America-Standard-Medium.woff") format("woff"),
@@ -144,6 +144,33 @@
 
   .animate-float {
     animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-fadein {
+    opacity: 0;
+    animation: fadein 3s ease 250ms forwards;
+  }
+
+  .animate-hero {
+    opacity: 0;
+    animation: hero 1.5s ease 250ms forwards;
+  }
+
+  @media (prefers-reduced-motion) {
+    .animate-float {
+      opacity: 100;
+      animation: none;
+    }
+
+    .animate-fadein {
+      opacity: 100;
+      animation: none;
+    }
+
+    .animate-hero {
+      opacity: 100;
+      animation: none;
+    }
   }
 
   @keyframes float {
@@ -164,6 +191,17 @@
     }
     100% {
       opacity: 100;
+    }
+  }
+
+  @keyframes hero {
+    0% {
+      opacity: 0;
+      transform: translateY(50%);
+    }
+    100% {
+      opacity: 100;
+      transform: translateY(0);
     }
   }
 

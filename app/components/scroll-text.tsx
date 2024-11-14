@@ -17,7 +17,8 @@ function ScrollText({ hoverable, className, ...props }: ScrollText) {
       textContent.current = ref.current.textContent ?? "";
 
     let step = 0;
-    const int = setInterval(() => {
+
+    const iter = () => {
       if (!ref.current) return clearInterval(int);
       if (step >= MAX_STEPS) {
         ref.current.textContent = textContent.current;
@@ -26,7 +27,10 @@ function ScrollText({ hoverable, className, ...props }: ScrollText) {
 
       ref.current.textContent = shuffle(textContent.current);
       step++;
-    }, 60);
+    };
+
+    const int = setInterval(iter, 60);
+    iter();
 
     return () => clearInterval(int);
   }, []);

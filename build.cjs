@@ -8,10 +8,21 @@ const indexFile = path.resolve(buildPath, "index.html");
 
 const files = glob.readdirSync(
   // eslint-disable-next-line no-undef
-  "app/routes/__with-nav.*.tsx"
+  "app/routes/*.tsx"
 );
 
-const routes = files.map((file) => file.split(".")[1]);
+const routes = files
+  .filter(
+    (file) =>
+      !file
+        .split(".")
+        .slice(0, -1)
+        .every((x) => x.indexOf("_") > -1 || x.indexOf("$") > -1)
+  )
+  .map((file) => {
+    let parts = file.split(".");
+    return path.basename(parts[parts.length - 2]);
+  });
 
 routes.forEach((file) => {
   fs.copyFileSync(indexFile, `${path.resolve(buildPath, file)}.html`);
@@ -30,8 +41,8 @@ const sitemap = `
 </url>
 ${routes
   .map(
-    (route) => 
-`<url>
+    (route) =>
+      `<url>
     <loc>
         https://www.serotonin.co/${route}
     </loc>

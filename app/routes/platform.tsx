@@ -436,7 +436,13 @@ export default function Platform() {
                   $0
                   <span className="text-xs ml-1 font-medium">/ month</span>
                 </p>
-                <button className="small">Get started</button>
+                <Link
+                  target="__blank"
+                  to="https://platform.serotonin.co/login"
+                  className="btn small"
+                >
+                  Get started
+                </Link>
               </div>
             </div>
             <div className="bg-[#111] border border-[#222] rounded-xl p-4 flex flex-col">
@@ -472,10 +478,14 @@ export default function Platform() {
                   $30
                   <span className="text-xs ml-1 font-medium">/ month</span>
                 </p>
-                <button className="small bg-lime-400 hover:bg-lime-500 focus-visible:bg-lime-500">
+                <Link
+                  target="__blank"
+                  to="https://platform.serotonin.co/account"
+                  className="btn small bg-lime-400 hover:bg-lime-500 focus-visible:bg-lime-500"
+                >
                   <LinkArrow className="mr-2" />
                   Subscribe
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -515,7 +525,13 @@ export default function Platform() {
               Build relationships with the decision makers
               <br className="md:hidden" /> driving web3 forward.
             </p>
-            <button className="secondary">Create account</button>
+            <Link
+              target="__blank"
+              to="https://platform.serotonin.co/login"
+              className="btn secondary"
+            >
+              Create account
+            </Link>
           </div>
           <div className="relative">
             <div className="rotate-[-4deg] h-[486px] flex flex-col justify-center [mask-image:linear-gradient(to_right,transparent,black,transparent)] gap-4">

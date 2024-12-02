@@ -107,6 +107,11 @@ const logos = [
 
 const features = [
   {
+    feature: "Telegram bot alerts when your contacts RSVP",
+    isFree: false,
+    isMember: true,
+  },
+  {
     feature:
       "Attend member-only virtual sessions with leading voices in crypto, tech, & beyond",
     isFree: false,
@@ -132,6 +137,11 @@ const features = [
   {
     feature: "Explore guest lists for every main and side event",
     isFree: "Limited",
+    isMember: true,
+  },
+  {
+    feature: "Telegram bot alerts for new flagship events",
+    isFree: true,
     isMember: true,
   },
   {
@@ -225,6 +235,7 @@ const freeFeatures = [
   "Limited guest list for every main and side event",
   "Live activity feed of new RSVPs as they happen",
   "Email digest of new attendees and side events",
+  "Telegram bot alerts for new flagship events",
   "Overlay your Telegram social graph",
   "Add your Calendar social graph",
   "Add your Farcaster social graph",
@@ -232,6 +243,7 @@ const freeFeatures = [
 
 const memberFeatures = [
   "All free features, plus",
+  "Telegram bot alerts when your contacts RSVP",
   "Entire guest lists for every main and side event",
   "Filter everything by your network and your events",
   "Timeline of how you overlap with other members",

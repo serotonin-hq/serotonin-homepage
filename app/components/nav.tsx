@@ -28,15 +28,15 @@ function Nav() {
 
   return (
     <>
-      <header className="flex items-start justify-between fixed md:left-auto left-8 right-8 top-8 z-10">
+      <header className="grid grid-cols-2 gap-2 grid-rows-1 md:grid-cols-1 fixed md:left-auto left-8 right-0 md:right-8 top-8 z-10">
         <NavLink className="md:hidden" to="/" aria-label="Home">
           <Logo
             onClick={toggleDark}
             className="animate-[spin_16s_linear_infinite] [animation-direction:reverse]"
           />
         </NavLink>
-        <nav>
-          <ul className="flex flex-col items-end">
+        <nav className="flex items-start md:items-end">
+          <ul className="flex flex-col md:items-end">
             <li>
               <NavLink
                 className="uppercase leading-7"
@@ -90,7 +90,7 @@ function Nav() {
               </NavLink>
             </li>
           </ul>
-          <ul>
+          <ul className="relative">
             <li className="flex items-center gap-1">
               <NavLink to="/platform" className={className}>
                 <ScrollText hoverable>Platform</ScrollText>

@@ -223,7 +223,7 @@ const clients = [
     },
     {
       name: "L.F.C.",
-      website: "https://lfc.com",
+      website: "https://www.liverpoolfc.com/",
     },
     {
       name: "Layer Zero",
@@ -337,8 +337,6 @@ const clients = [
       name: "RIPPLE",
       website: "https://ripple.com",
     },
-  ],
-  [
     {
       name: "Robinhood",
       website: "https://robinhood.com",
@@ -347,6 +345,8 @@ const clients = [
       name: "Roofstock",
       website: "https://www.roofstock.com",
     },
+  ],
+  [
     {
       name: "SAHARA",
       website: "https://www.sahara.com",
@@ -444,6 +444,10 @@ const clients = [
       website: "https://www.wilderworld.com",
     },
     { name: "World of Women", website: "https://worldofwomen.art" },
+    {
+      name: "Wormhole",
+      website: "https://wormhole.com/",
+    },
   ],
 ];
 

@@ -162,13 +162,6 @@ export default function Team() {
         </div>
         <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
           <TeamMember
-            className="col-span-4 md:mb-0 mb-12"
-            name="Vanina Ivanova"
-            title="Marketing Director"
-          />
-        </div>
-        <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
-          <TeamMember
             className="col-start-5 col-span-2"
             name="Celento George"
             title="Founding Engineer"
@@ -237,11 +230,6 @@ export default function Team() {
             className="col-span-4"
             name="Eduardo Tio"
             title="Senior Content Manager"
-          />
-          <TeamMember
-            className="col-start-7 col-span-3"
-            name="Polly Chan"
-            title="Senior Events Manager"
           />
         </div>
         <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
@@ -339,11 +327,6 @@ export default function Team() {
             name="Lauren Bukoskey"
             title="Senior PR Manager"
           />
-          <TeamMember
-            className="col-start-7 col-span-3"
-            name="Fleur Campbell-Follett"
-            title="Principal Recruiter"
-          />
         </div>
         <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
           <TeamMember
@@ -367,6 +350,48 @@ export default function Team() {
             className="col-start-5 col-span-3"
             name="Caroline York"
             title="APAC Marketing Director"
+          />
+        </div>
+
+        <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
+          <TeamMember
+            className="col-span-2"
+            name="Shané Stoliarova"
+            title="Sr. Recruiter"
+          />
+          <TeamMember
+            className="col-span-4"
+            name="Harshita Soni"
+            title="Growth Marketing Manager"
+          />
+          <TeamMember
+            className="col-span-3"
+            name="Manish Chembeti"
+            title="Rotational Associate"
+          />
+        </div>
+        <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
+          <TeamMember
+            className="col-span-2"
+            name="Zach Gubner"
+            title="Rotational Associate"
+          />
+          <TeamMember
+            className="col-start-5 col-span-3"
+            name="Paula Grandis"
+            title="Growth Marketing Manager"
+          />
+        </div>
+        <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
+          <TeamMember
+            className="col-span-3"
+            name="Paige Horinek"
+            title="Growth Analytics Manager"
+          />
+          <TeamMember
+            className="col-start-5 col-span-3"
+            name="Kay Pozniakas"
+            title="Growth Marketing Manager"
           />
         </div>
       </SearchLight>

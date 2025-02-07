@@ -23,7 +23,7 @@ export default function Products() {
             className="uppercase peer hover:pl-4"
             to="https://www.spindl.xyz/"
           >
-            <ScrollText hoverable>Spindl</ScrollText>
+            <ScrollText hoverable>Spindl (Coinbase)</ScrollText>
           </Link>
           <BlankArrow className="shrink-0 md:opacity-0 peer-hover:opacity-100 transition-opacity text-[#111] dark:text-[#EEE]" />
         </div>
@@ -32,7 +32,7 @@ export default function Products() {
           className="underline md:text-[#EEE]/30"
           to="https://www.spindl.xyz/"
         >
-          <ScrollText hoverable>Spindl</ScrollText>
+          <ScrollText hoverable>Spindl (acquired by Coinbase)</ScrollText>
         </Link>{" "}
         is the leading web3 marketing analytics platform, built by the team
         behind Facebook{"'"}s original ad product. Pioneers of {"'"}

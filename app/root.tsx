@@ -13,6 +13,7 @@ import { cn } from "~/utils/cn";
 import { baseMeta } from "~/utils/meta";
 import { atomWithStorage } from "jotai/utils";
 import { useAtomValue } from "jotai";
+import { memo } from "react";
 
 export const meta: MetaFunction = () => {
   return baseMeta(
@@ -92,10 +93,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <Scripts />
+        <TwitterPixel />
       </body>
     </html>
   );
 }
+
+const TwitterPixel = memo(function Pixel() {
+  const __html = `!function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',
+a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+twq('config','o8dec');`;
+
+  return <script dangerouslySetInnerHTML={{ __html }} />;
+});
 
 export default function App() {
   return <Outlet />;

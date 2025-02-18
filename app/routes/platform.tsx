@@ -1,7 +1,7 @@
 import { Link, NavLink } from "@remix-run/react";
 import { gsap } from "gsap";
 import { useSetAtom } from "jotai";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Check from "~/components/check";
 import CheckMini from "~/components/check-mini";
 import LinkArrow from "~/components/link-arrow";
@@ -276,6 +276,11 @@ export default function Platform() {
     };
   }, []);
 
+  const track = useCallback(() => {
+    // Twitter tracking pixel
+    twq("event", "tw-o8dec-p4hdb", {});
+  }, []);
+
   return (
     <>
       <Particles
@@ -288,7 +293,11 @@ export default function Platform() {
           <NavLink to="/" aria-label="Home">
             <Logo className="animate-[spin_16s_linear_infinite] [animation-direction:reverse] w-14 h-14" />
           </NavLink>
-          <Link className="btn" to="https://platform.serotonin.co/login">
+          <Link
+            className="btn"
+            to="https://platform.serotonin.co/login"
+            onClick={track}
+          >
             Connect
           </Link>
         </nav>
@@ -307,8 +316,9 @@ export default function Platform() {
             <Link
               className="btn secondary animate-fadein [animation-delay:500ms]"
               to="https://platform.serotonin.co/login"
+              onClick={track}
             >
-              Create Account
+              Create account
             </Link>
           </header>
           <Carousel className="mb-24 sm:[mask-image:linear-gradient(to_right,transparent,black,transparent)]">
@@ -538,6 +548,7 @@ export default function Platform() {
               target="__blank"
               to="https://platform.serotonin.co/login"
               className="btn secondary"
+              onClick={track}
             >
               Create account
             </Link>

@@ -30,6 +30,10 @@ const clients = [
       website: "https://akash.network",
     },
     {
+      name: "AION",
+      website: "https://aion.theoan.com/",
+    },
+    {
       name: "Aleph Zero",
       website: "https://alephzero.org",
     },
@@ -314,6 +318,10 @@ const clients = [
       website: "https://push.org",
     },
     {
+      name: "Plasma",
+      website: "https://www.plasma.to/",
+    },
+    {
       name: "Quasar",
       website: "https://www.quasar.fi",
     },
@@ -418,6 +426,10 @@ const clients = [
     {
       name: "Urbit",
       website: "https://urbit.org",
+    },
+    {
+      name: "USDT0",
+      website: "https://usdt0.to/",
     },
     {
       name: "VanEck",

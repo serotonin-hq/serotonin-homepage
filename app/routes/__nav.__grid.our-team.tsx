@@ -102,24 +102,26 @@ export default function Team() {
           <TeamMember
             className="col-span-3 md:hidden block md:mb-0 mb-12"
             name="Katie Narain"
-            title="Web3 Member Experience Lead"
+            title="Strategic Partnerships and Events, Platform"
           />
         </div>
         <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
           <TeamMember
-            className="col-span-2"
+            className="col-span-4"
             name="David Garber"
-            title="Content Director"
+            title="Senior Directory of Content and Social"
           />
           <TeamMember
-            className="col-span-2"
-            name="Garret J. Shaw"
-            title="PR Director"
-          />
-          <TeamMember
-            className="col-span-3 md:block hidden"
+            className="col-span-2 md:block hidden"
             name="Katie Narain"
-            title="Web3 Member Experience Lead"
+            title="Strategic Partnerships and Events, Platform"
+          />
+        </div>
+        <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
+          <TeamMember
+            className="col-span-3"
+            name="Amy Mayernik"
+            title="Events Director"
           />
         </div>
         <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
@@ -138,7 +140,7 @@ export default function Team() {
           <TeamMember
             className="col-span-4"
             name="Martyna Borys-Liszka"
-            title="PR Director"
+            title="Senior PR Director"
           />
         </div>
         <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
@@ -162,6 +164,11 @@ export default function Team() {
         </div>
         <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
           <TeamMember
+            className="col-span-2"
+            name="Caio Alcantara"
+            title="Senior Engineer"
+          />
+          <TeamMember
             className="col-start-5 col-span-2"
             name="Celento George"
             title="Founding Engineer"
@@ -184,7 +191,7 @@ export default function Team() {
             title="Senior Brand Designer"
           />
           <TeamMember
-            className="col-span-3 md:mb-0 mb-12"
+            className="col-span-3"
             name="Ryan Lasswell"
             title="Founding Product Designer"
           />
@@ -192,8 +199,25 @@ export default function Team() {
         <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
           <TeamMember
             className="col-span-2"
+            name="Nissa Szabo"
+            title="Marketing Director"
+          />
+          <TeamMember
+            className="col-span-3 md:mb-0 mb-12"
+            name="Karen Tang"
+            title="Director of BD, APAC"
+          />
+        </div>
+        <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
+          <TeamMember
+            className="col-span-2"
             name="Ana Lezama"
             title="Senior PR Manager"
+          />
+          <TeamMember
+            className="col-start-3 col-span-2"
+            name="Jordon Qureshi"
+            title="PR Manager"
           />
           <TeamMember
             className="col-span-4"
@@ -243,7 +267,7 @@ export default function Team() {
           <TeamMember
             className="col-span-2"
             name="Esha Datanwala"
-            title="Social Media Manager"
+            title="Senior Social Media Manager"
           />
           <TeamMember
             className="col-start-5 col-span-3"
@@ -294,6 +318,18 @@ export default function Team() {
         </div>
         <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
           <TeamMember
+            className="col-start-3 col-span-2"
+            name="Geraint Smith"
+            title="Social Media Manager"
+          />
+          <TeamMember
+            className="col-span-3"
+            name="Suhail Lone"
+            title="Social Media Associate"
+          />
+        </div>
+        <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
+          <TeamMember
             className="col-span-2"
             name="Josh Adams"
             title="Senior PR Manager"
@@ -301,7 +337,7 @@ export default function Team() {
           <TeamMember
             className="col-span-2"
             name="Kayla Gill"
-            title="Senior PR Manager"
+            title="PR Director"
           />
         </div>
         <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
@@ -329,11 +365,6 @@ export default function Team() {
           />
         </div>
         <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
-          <TeamMember
-            className="col-span-2"
-            name="Bregt Vanneuvile"
-            title="Marketing Coordinator"
-          />
           <TeamMember
             className="col-start-5 col-span-3"
             name="Yuna Y."
@@ -363,11 +394,6 @@ export default function Team() {
             className="col-span-4"
             name="Harshita Soni"
             title="Growth Marketing Manager"
-          />
-          <TeamMember
-            className="col-span-3"
-            name="Manish Chembeti"
-            title="Rotational Associate"
           />
         </div>
         <div className="md:grid flex flex-col lg:grid-cols-9 grid-cols-6 gap-6">
